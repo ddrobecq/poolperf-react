@@ -1,43 +1,33 @@
 'use client';
 
-import { Stack, Typography } from "@mui/material";
-import CustomButton from "../lib/button";
-import useFetch from "../lib/fetchAPI";
-import Loader from "../lib/loader";
-import { useEffect, useState } from "react";
-import { _DEBUG } from "../lib/tools";
+import { Button, Stack, Typography } from "@mui/material";
+import { BallButton } from "../lib/button";
+import { useState } from "react";
+import Link from "next/link";
+import UserInfo from "../users/[id]/user-info";
 
-function PlayerInfoShort(props) {
+function PlayerButton(props) {
     const id = props.id
-    const [data, isLoading] = useFetch (`/users/${id}`, "GET", null, true);
 
-    if (isLoading) {
-        return <Loader />;
-    }
-    else {
-        if (!data) {
-            return <Typography>Erreur</Typography>;
-        }
-        return (
-            <Stack direction={"row"}>
-                <CustomButton variant="contained">
-                    {data[0].usr_name}
-                </CustomButton>
-            </Stack>
-        );
-    } 
+    return (
+        <Link href={`/users/${id}`} legacyBehavior passHref >
+            <Button >
+                <UserInfo id={id} size='small' />
+            </Button>
+        </Link>
+    );
 }
 
 function PlayerItem(props) {
     return (
         <Stack direction={"row"}>
-            <CustomButton onClick={props.handleClick} color={props.color} >
+            <BallButton onClick={props.handleClick} color={props.color} >
                 <Stack direction={"column"} alignItems={"center"} justifyContent={"center"}>
                     <Typography>{props.label}</Typography>
                     <Typography>{props.value}</Typography>
                     {(props.total) && <Typography>{Math.round(props.value / props.total * 100)}%</Typography>}
                 </Stack>
-            </CustomButton>
+            </BallButton>
         </Stack>
     );
 }
@@ -86,8 +76,8 @@ export default function PlayerStack(props) {
     }
 
     return (
-        <Stack direction={"column"} spacing={2} alignItems={"center"} justifyContent={"space-between"}>
-            <PlayerInfoShort id={props.id} />
+        <Stack direction={"column"} spacing={6} alignItems={"center"} justifyContent={"space-between"}>
+            <PlayerButton id={props.id} />
             <PlayerShot id={props.id} value={getNbShot()} handleClick={handleClickNbShot}/>
             <PlayerPocket id={props.id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>
             <PlayerFoul id={props.id} value={getNbFoul()} total={getNbShot()} handleClick={handleClickNbFoul}/>

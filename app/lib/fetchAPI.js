@@ -15,10 +15,11 @@ const _APIURL = "https://api.billard.drobecq.fr";
 export default function useFetch (url, method, strPayLoad, bWithCache) {
     const [data, setData] = useState (null); 
     const [isLoading, setIsLoading] = useState (true); 
+    const bRetry = (method === 'GET') ? true : false;
 
     useEffect(() => {
         if (url) {
-                callAPIPerfPool(url, method, strPayLoad, bWithCache, true)
+                callAPIPerfPool(url, method, strPayLoad, bWithCache, bRetry)
                 .then ((results) => {
                     setData (results);
                     setIsLoading(false);
@@ -28,7 +29,7 @@ export default function useFetch (url, method, strPayLoad, bWithCache) {
                     setIsLoading(false);
                 });
         }    
-    }, [url, method, bWithCache, strPayLoad]);
+    }, [url, method, bWithCache, strPayLoad, bRetry]);
 
     return [data, isLoading];
 }
@@ -89,7 +90,7 @@ function callAPI(strPath, strMethod, strPayLoad, bWithCache, bRetry) {
                 });
             };
             xhr.send(strPayLoad);       
-            _DEBUG ("sent : ", `${strMethod} ${strPath}`); 
+            _DEBUG ("sent : ", `${strMethod} ${strPath} ${strPayLoad}`); 
         }
     });
 };

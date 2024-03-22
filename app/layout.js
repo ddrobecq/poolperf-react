@@ -1,7 +1,7 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./lib/theme";
+import { CssBaseline, Stack } from '@mui/material';
 
 export const metadata = {
   title: "Pool Perf",
@@ -11,7 +11,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <AppRouterCacheProvider >
+          <ThemeProvider theme={theme}>
+            <CssBaseline/>
+              <Stack margin={1} >
+                {children}
+              </Stack>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
