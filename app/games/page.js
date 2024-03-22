@@ -6,11 +6,13 @@ import CommandButton from "../lib/button";
 import GameSaveDialog from "./game-save";
 import { useState } from "react";
 import { Divider } from "@mui/material";
-import { getPlayerId, setPlayerId } from "../lib/localdb";
+import useLocalStorage from "../lib/localdb";
 
 export default function Game() {
-  let player1 = {playerId: getPlayerId(1), name:'', nbShot: 0, nbPocket: 0, nbFoul: 0};
-  let player2 = {playerId: getPlayerId(2), name:'', nbShot: 0, nbPocket: 0, nbFoul: 0};
+  const [playerId1, setPlayerId1] = useLocalStorage("PlayerId1", 1);
+  const [playerId2, setPlayerId2] = useLocalStorage("PlayerId2", 2);
+  let player1 = {playerId: playerId1, name:'', nbShot: 0, nbPocket: 0, nbFoul: 0};
+  let player2 = {playerId: playerId2, name:'', nbShot: 0, nbPocket: 0, nbFoul: 0};
   const [open, setOpen] = useState(false);
 
   function handleClose () {
@@ -19,8 +21,8 @@ export default function Game() {
 
   function handleSaveGame() {
     setOpen(true);
-    setPlayerId(1, player1.playerId);
-    setPlayerId(2, player2.playerId);
+    setPlayerId1(player1.playerId);
+    setPlayerId2(player2.playerId);
   };
 
   function handleShowRules() {
