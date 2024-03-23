@@ -3,7 +3,7 @@ import Loader from "@/app/lib/loader";
 import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 export default function UserDetailStats(props) {
-    const [data, isLoading] = useFetch (`/users/${props.id}/stats`, "GET", null, true);
+    const [data, isLoading] = useFetch (`/users/${props.id}/stats`, "GET", null);
 
     function TypoTableHeader (props) {
         return (

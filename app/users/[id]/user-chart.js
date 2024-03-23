@@ -36,7 +36,7 @@ function UserDetailGamesChart(props) {
 }
 
 export default function UserDetailGames(props) {
-    const [data, isLoading] = useFetch (`/users/${props.id}/games`, "GET", null, true);
+    const [data, isLoading] = useFetch (`/users/${props.id}/games`, "GET", null);
     const [dataPocket, setDataPocket] = useState([]);
     const [dataFoul, setDataFoul] = useState([]);
 

@@ -8,7 +8,7 @@ function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
     
     //TO DO : TO BE REMOVED WHEN INCLUDE USR_NAME IN PLAYER OBJECT IN API
-    const [userData, isLoading] = useFetch (`/users/${props.player.playerId}`, "GET", null, true);
+    const [userData, isLoading] = useFetch (`/users/${props.player.playerId}`, "GET", null);
     const [name, setName] = useState (props.player.name);
 
     useEffect (() => {
@@ -77,7 +77,7 @@ export default function GameSaveDialog (props) {
 }
 
 function GamePlayerSave (props) {
-    const [playerSaved, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player), false);
+    const [playerSaved, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player));
     const [isSaved, setIsSaved] = useState (false);
 
     /* BUILD JSON BODY FOR SAVNG A GAME */

@@ -6,7 +6,7 @@ import Loader from "../lib/loader";
 import UserCard from "./user-card";
 
 export default function Users() {
-    const [data, isLoading] = useFetch ("/users", "GET", null, true);
+    const [data, isLoading] = useFetch ("/users", "GET", null);
 
     return (
       <Stack direction={"column"} spacing={2} justifyContent={'space-between'} >
