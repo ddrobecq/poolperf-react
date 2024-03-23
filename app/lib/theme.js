@@ -2,11 +2,17 @@
 
 import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
+import NextLink from 'next/link';
+import { forwardRef } from 'react';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
+});
+
+const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
+    return <NextLink ref={ref} {...props} />;
 });
 
 const theme = createTheme({
@@ -41,6 +47,28 @@ const theme = createTheme({
       fontSize: '1.1rem',
       fontWeight: 500,
     },  
+  },
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehaviour,
+        color: 'inherit',
+        underline: "none"
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+          LinkComponent: LinkBehaviour
+      }
+    },
+    MuiCard: {
+      variant:"outlined",
+      styleOverrides: {
+        root: {
+          width: '100%',
+        },
+      },
+    },
   },
 });
 

@@ -1,22 +1,9 @@
 'use client';
 
-import { Button, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { BallButton } from "../lib/button";
 import { useState } from "react";
-import Link from "next/link";
 import UserInfo from "../users/[id]/user-info";
-
-function PlayerButton(props) {
-    const id = props.id
-
-    return (
-        <Link href={`/users/${id}`} legacyBehavior passHref >
-            <Button >
-                <UserInfo id={id} size='small' />
-            </Button>
-        </Link>
-    );
-}
 
 function PlayerItem(props) {
     return (
@@ -77,7 +64,7 @@ export default function PlayerStack(props) {
 
     return (
         <Stack direction={"column"} spacing={6} alignItems={"center"} justifyContent={"space-between"}>
-            <PlayerButton id={props.id} />
+            <UserInfo id={props.id} size='small' />
             <PlayerShot id={props.id} value={getNbShot()} handleClick={handleClickNbShot}/>
             <PlayerPocket id={props.id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>
             <PlayerFoul id={props.id} value={getNbFoul()} total={getNbShot()} handleClick={handleClickNbFoul}/>

@@ -12,7 +12,7 @@ export default function Users() {
       <Stack direction={"column"} spacing={2} justifyContent={'space-between'} >
         {isLoading && <Loader />}
         {data && data.map((user, index) => (
-          <UserCard key={index} id={user.usr_id} />
+            <UserCard key={index} id={user.usr_id} />
         ))}
       </Stack>
     )
