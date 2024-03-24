@@ -9,14 +9,10 @@ export default function UserAvatar(props) {
 
     return (
         <Stack direction={"column"} justifySelf={'center'} >
-            {(image)
-            ? <Avatar 
+            <Avatar 
                 alt={props.name}
                 src={'data:image/png;base64,'+ image}
                 sx={{ width: 100, height: 100 }} />
-            : <SvgIcon sx={{fontSize: 100}} >
-                <PersonIcon fontSize="large" />
-              </SvgIcon>}
         </Stack>
     );
 }
