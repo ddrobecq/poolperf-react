@@ -1,9 +1,10 @@
 'use client';
 
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { BallButton } from "../lib/button";
 import { useState } from "react";
 import UserInfo from "../users/[id]/user-info";
+import UserSelectDialog from "../users/[id]/user-select";
 
 function PlayerItem(props) {
     return (
@@ -64,10 +65,40 @@ export default function PlayerStack(props) {
 
     return (
         <Stack direction={"column"} spacing={6} alignItems={"center"} justifyContent={"space-between"}>
-            <UserInfo id={props.id} direction={'column'} />
+            <PlayerButton id={props.id} direction={'column'} handleChangePlayer={props.handleChangePlayer} />
             <PlayerShot id={props.id} value={getNbShot()} handleClick={handleClickNbShot}/>
             <PlayerPocket id={props.id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>
             <PlayerFoul id={props.id} value={getNbFoul()} total={getNbShot()} handleClick={handleClickNbFoul}/>
+        </Stack>
+    );
+}
+
+function PlayerButton (props) {
+    const [open, setOpen] = useState(false);
+    const handleChangePlayer = props.handleChangePlayer;
+
+    function handleClose () {
+       setOpen(false);
+    };
+
+    function handleUserSelect() {
+        setOpen(true);
+    };
+
+    function onSelect(id) {
+        handleChangePlayer(id);
+        handleClose();
+    }
+
+    return (
+        <Stack direction={"row"} spacing={1}>
+            <Button onClick={handleUserSelect} variant={'text'} color={'inherit'} >
+                <UserInfo {...props} />
+            </Button>
+            <UserSelectDialog
+                open={open}
+                onClose={handleClose}
+                onSelect={onSelect} />
         </Stack>
     );
 }

@@ -1,5 +1,4 @@
 import useFetch from "@/app/lib/fetchAPI";
-import Loader from "@/app/lib/loader";
 import { BarChart } from "@mui/x-charts";
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";

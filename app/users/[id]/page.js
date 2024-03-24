@@ -11,6 +11,19 @@ import useFetch from "@/app/lib/fetchAPI";
 
 export default function UserDetail({params}) {
     const id = params.id;
+
+    return (
+        <Stack direction={"column"} spacing={2} alignItems={"center"} >
+            <UserDetailInfo id={id} />
+            <Divider />
+            <UserDetailStats id={id} />
+            <Divider />
+            <UserDetailGames id={id} />
+        </Stack>
+    );
+}
+
+function UserDetailInfo (props) {
     const [data, isLoading] = useFetch (`/users`, "GET", null);
     const [prevId, setPrevId] = useState(-1);
     const [nextId, setNextId] = useState(-1);
@@ -19,7 +32,7 @@ export default function UserDetail({params}) {
         if (data) {
             for (let index = 0; index < data.length; index++) {
                 const element = data[index];
-                if (element.usr_id == id) {
+                if (element.usr_id == props.id) {
                     if (index > 0) setPrevId(data[index - 1].usr_id);
                     else setPrevId(data[data.length - 1].usr_id);
                     if (index < data.length - 1) setNextId(data[index + 1].usr_id);
@@ -28,23 +41,17 @@ export default function UserDetail({params}) {
                 }
             };
         }
-    }, [data, id]);
-
+    }, [data, props.id]);
+  
     return (
-        <Stack direction={"column"} spacing={2} alignItems={"center"} >
-            <Stack direction={"row"} spacing={2} alignItems={'center'} width={'100%'} justifyContent={'space-around'} >
-                {(prevId>-1) && <Link href={`/users/${prevId}`} >
-                    <IconButton aria-label="prev" size="large" ><ArrowBackIosIcon/></IconButton>
-                </Link>}
-                <UserInfo id={id} direction={'column'} />
-                {(nextId>-1) && <Link href={`/users/${nextId}`} >
-                    <IconButton aria-label="next" size="large" ><ArrowForwardIosIcon/></IconButton>
-                </Link>}
-            </Stack>
-            <Divider />
-            <UserDetailStats id={id} />
-            <Divider />
-            <UserDetailGames id={id} />
+        <Stack direction={"row"} spacing={2} alignItems={'center'} width={'100%'} justifyContent={'space-around'} >
+            {(prevId>-1) && <Link href={`/users/${prevId}`} >
+                <IconButton aria-label="prev" size="large" ><ArrowBackIosIcon/></IconButton>
+            </Link>}
+            <UserInfo id={props.id} direction={'column'} />
+            {(nextId>-1) && <Link href={`/users/${nextId}`} >
+                <IconButton aria-label="next" size="large" ><ArrowForwardIosIcon/></IconButton>
+            </Link>}
         </Stack>
     );
 }

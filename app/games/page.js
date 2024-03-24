@@ -28,12 +28,22 @@ export default function Game() {
   function handleShowRules() {
   };
 
+  function handleChangePlayer1(id) {
+    player1.playerId = id;
+    alert("Player1: " + player1.playerId);
+  };
+
+  function handleChangePlayer2(id) {
+    player2.playerId = id;
+    alert("Player2: " + player2.playerId);
+  };
+
   return (
     <Stack direction={"column"} spacing={2} justifyContent={'space-between'}>
       <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
-        <PlayerStack id={player1.playerId} />
+        <PlayerStack id={player1.playerId} handleChangePlayer={handleChangePlayer1} />
         <Divider orientation="vertical" flexItem />
-        <PlayerStack id={player2.playerId} />
+        <PlayerStack id={player2.playerId} handleChangePlayer={handleChangePlayer2} />
       </Stack>
       <Divider />
       <Stack direction={"column"} spacing={2} alignItems={"center"}>

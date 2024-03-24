@@ -4,7 +4,7 @@ import { Children } from "react";
 
 export default function CommandButton(props) {
     return (
-        <Button variant={"contained"} fullWidth color={props.color} {...props}>
+        <Button fullWidth color={props.color} {...props}>
             {props.children}
         </Button>
     );
@@ -15,7 +15,6 @@ export function BallButton(props) {
 //    <Image src={'../public/1.svg'} alt={'ball'} width={50} height={50} />
     return (
         <Button 
-            variant={"contained"} 
             sx={{borderRadius:'50px'}} 
             fullWidth 
             color={'success'} 

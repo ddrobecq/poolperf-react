@@ -1,6 +1,6 @@
 import useFetch from "@/app/lib/fetchAPI";
 import Loader from "@/app/lib/loader";
-import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 export default function UserDetailStats(props) {
     const [data, isLoading] = useFetch (`/users/${props.id}/stats`, "GET", null);
@@ -14,6 +14,12 @@ export default function UserDetailStats(props) {
     function TypoTableCell (props) {
         return (
             <Typography variant={"h2"} >{props.value}</Typography>
+        );
+    }
+
+    function SkeletonTableCell (props) {
+        return (
+            <Skeleton variant={"h2"} />
         );
     }
 
@@ -36,15 +42,15 @@ export default function UserDetailStats(props) {
                 <TableBody>
                     <TableRow>
                         <TableCell><TypoTableHeader title='Empochées'/></TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].avgPocket)}/> : <Loader/>}</TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].minPocket)}/> : <Loader/>}</TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].maxPocket)}/> : <Loader/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].avgPocket)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].minPocket)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].maxPocket)}/> : <SkeletonTableCell/>}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell><TypoTableHeader title='Fautes'/></TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].avgFoul)}/> : <Loader/>}</TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].minFoul)}/> : <Loader/>}</TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].maxFoul)}/> : <Loader/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].avgFoul)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].minFoul)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].maxFoul)}/> : <SkeletonTableCell/>}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

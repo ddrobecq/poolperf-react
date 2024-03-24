@@ -18,9 +18,6 @@ const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
 const theme = createTheme({
   palette: {
     mode: 'dark',
-    background: {
-      paper: '#212129',
-    },
     primary: {
       main: '#1976d2',
     },
@@ -58,14 +55,34 @@ const theme = createTheme({
     },
     MuiButtonBase: {
       defaultProps: {
-          LinkComponent: LinkBehaviour
+          LinkComponent: LinkBehaviour,
       }
     },
-    MuiCard: {
-      variant:"outlined",
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+        color: "primary",
+      },
+    },
+    MuiDialog: {
+      defaultProps: {
+        variant: "outlined",
+        fullWidth: true,
+        maxWidth: 'sm',
+      },
       styleOverrides: {
         root: {
-          width: '100%',
+          borderRadius: 5,
+        },
+      },
+    },
+    MuiCard: {
+      defaultProps: {
+        variant: "outlined",
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 5,
         },
       },
     },

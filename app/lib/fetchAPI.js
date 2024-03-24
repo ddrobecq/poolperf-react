@@ -62,7 +62,7 @@ function callAPI(strPath, strMethod, strPayLoad, bRetry) {
             console.error (`received : ERROR ${this.status} on request ${strMethod} ${strPath}`, error);
             if (bRetry) {
                 console.error ('retry:', `${strMethod} ${strPath}`);
-                return (callAPI(strPath, strMethod, strPayLoad, bWithCache, false));
+                return (callAPI(strPath, strMethod, strPayLoad, false));
             } else reject({
                 status: this.status,
                 error: error
