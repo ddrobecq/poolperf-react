@@ -9,10 +9,10 @@ import { Divider } from "@mui/material";
 import useLocalStorage from "../lib/localdb";
 
 export default function Game() {
-  const [playerId1, setPlayerId1] = useLocalStorage("PlayerId1", 1);
-  const [playerId2, setPlayerId2] = useLocalStorage("PlayerId2", 2);
-  let player1 = {playerId: playerId1, name:'', nbShot: 0, nbPocket: 0, nbFoul: 0};
-  let player2 = {playerId: playerId2, name:'', nbShot: 0, nbPocket: 0, nbFoul: 0};
+  const [localStoragePlayerId1, setLocalStoragePlayerId1] = useLocalStorage("PlayerId1", 1);
+  const [localStoragePlayerId2, setLocalStoragePlayerId2] = useLocalStorage("PlayerId2", 2);
+  let player1 = {playerId: localStoragePlayerId1, nbShot: 0, nbPocket: 0, nbFoul: 0};
+  let player2 = {playerId: localStoragePlayerId2, nbShot: 0, nbPocket: 0, nbFoul: 0};
   const [open, setOpen] = useState(false);
 
   function handleClose () {
@@ -20,9 +20,9 @@ export default function Game() {
   };
 
   function handleSaveGame() {
+    setLocalStoragePlayerId1(player1.playerId);
+    setLocalStoragePlayerId2(player2.playerId);
     setOpen(true);
-    setPlayerId1(player1.playerId);
-    setPlayerId2(player2.playerId);
   };
 
   function handleShowRules() {
@@ -30,20 +30,28 @@ export default function Game() {
 
   function handleChangePlayer1(id) {
     player1.playerId = id;
-    alert("Player1: " + player1.playerId);
+    setLocalStoragePlayerId1(player1.playerId);
   };
 
   function handleChangePlayer2(id) {
     player2.playerId = id;
-    alert("Player2: " + player2.playerId);
+    setLocalStoragePlayerId2(player2.playerId);
+  };
+
+  function updatePlayer1(player) {
+    player1 = player;
+  };
+
+  function updatePlayer2(player) {
+    player2 = player;
   };
 
   return (
     <Stack direction={"column"} spacing={2} justifyContent={'space-between'}>
       <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
-        <PlayerStack id={player1.playerId} handleChangePlayer={handleChangePlayer1} />
+        <PlayerStack index={1} id={player1.playerId} handleChangePlayer={handleChangePlayer1} updatePlayer={updatePlayer1} />
         <Divider orientation="vertical" flexItem />
-        <PlayerStack id={player2.playerId} handleChangePlayer={handleChangePlayer2} />
+        <PlayerStack index={2} id={player2.playerId} handleChangePlayer={handleChangePlayer2} updatePlayer={updatePlayer2}/>
       </Stack>
       <Divider />
       <Stack direction={"column"} spacing={2} alignItems={"center"}>

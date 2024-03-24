@@ -3,7 +3,6 @@ import Loader from "../lib/loader";
 import { useEffect, useState } from "react";
 import Transition from "../lib/transition";
 import useFetch from "../lib/fetchAPI";
-import { _DEBUG } from "../lib/tools";
 
 function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
@@ -24,7 +23,6 @@ function GameSaveDialogPlayerLine(props) {
     }
 
     if (props.player){
-        _DEBUG("GameSaveDialogPlayerLine", props.player);
         return (
             <Stack direction={"row"} spacing={2} alignItems={'center'}>
                 <Typography>Pour {name} ?</Typography>

@@ -2,9 +2,10 @@
 
 import { Button, Stack, Typography } from "@mui/material";
 import { BallButton } from "../lib/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserInfo from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
+import { _DEBUG } from "../lib/tools";
 
 function PlayerItem(props) {
     return (
@@ -41,6 +42,11 @@ export default function PlayerStack(props) {
     const [nbShot, setNbShot] = useState(0);
     const [nbPocket, setNbPocket] = useState(0);
     const [nbFoul, setNbFoul] = useState(0);
+
+    useEffect(() => {
+        const player = {playerId: props.id, nbShot: nbShot, nbPocket: nbPocket, nbFoul: nbFoul};
+        props.updatePlayer(player);
+    }, [nbShot, nbPocket, nbFoul, props]);
 
     function handleClickNbShot() {
         setNbShot(nbShot + 1);
