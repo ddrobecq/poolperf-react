@@ -22,7 +22,7 @@ export default function UserCard (props) {
                 <Link href={`/users/${props.id}`} >
                     <CardActionArea >
                         <CardContent>
-                            <UserInfo id={props.id} size={'large'} />
+                            <UserInfo id={props.id} direction={'row'} />
                         </CardContent>
                     </CardActionArea>
                 </Link>

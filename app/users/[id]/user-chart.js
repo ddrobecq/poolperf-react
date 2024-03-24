@@ -1,20 +1,22 @@
 import useFetch from "@/app/lib/fetchAPI";
 import Loader from "@/app/lib/loader";
 import { BarChart } from "@mui/x-charts";
-import { Stack, Typography } from "@mui/material";
+import { Skeleton, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import theme from "@/app/lib/theme";
+import { _DEBUG } from "@/app/lib/tools";
 
 function UserDetailGamesChart(props) {
-    const data = props.data.map((item) => item.y);
-    const xAxis = props.data.map((item) => item.x);
+    const data = (props.data.length > 0) ? props.data.map((item) => item.y) : null;
+    const xAxis = (props.data.length > 0) ? props.data.map((item) => item.x) : null;
     const percent = (props.percent) ? '%' : '';
+    const chartHeight = 300;
 
-    if (!data) return <Typography>Erreur</Typography>
-    else return (
+    return (
         <Stack direction={"column"} spacing={2} >
             <Typography variant={"h1"}>{props.label}</Typography>
-            <BarChart
+            {(data) 
+            ? <BarChart
                 xAxis={[{
                     label: 'Parties', 
                     data: xAxis, 
@@ -29,8 +31,10 @@ function UserDetailGamesChart(props) {
                     data:data
                 }]}
                 margin={{top: 5, right: 15, left: 30}}
-                height={300}
-            />
+                height={chartHeight}
+                />
+            : <Skeleton variant="rectangular" height={chartHeight} />
+            }
         </Stack>
     );
 }
@@ -53,9 +57,7 @@ export default function UserDetailGames(props) {
         }
     }, [data, isLoading]);
 
-    if (isLoading) return <Loader />
-    else if (!data) return <Typography>Erreur</Typography>;
-    else return (
+    return (
         <Stack direction={'column'} spacing={2} width={'100%'} >
             <UserDetailGamesChart data={dataPocket} label={'Empochées'} percent color={theme.palette.success.main} />
             <UserDetailGamesChart data={dataFoul} label={'Fautes'} color={theme.palette.error.main} />

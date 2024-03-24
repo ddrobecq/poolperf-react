@@ -20,16 +20,10 @@ export default function UserDetail({params}) {
             for (let index = 0; index < data.length; index++) {
                 const element = data[index];
                 if (element.usr_id == id) {
-                    if (index > 0) {
-                        setPrevId(data[index - 1].usr_id);
-                    } else {
-                        setPrevId(data[data.length - 1].usr_id);
-                    }
-                    if (index < data.length - 1) {
-                        setNextId(data[index + 1].usr_id);
-                    } else {
-                        setNextId(data[0].usr_id);
-                    }
+                    if (index > 0) setPrevId(data[index - 1].usr_id);
+                    else setPrevId(data[data.length - 1].usr_id);
+                    if (index < data.length - 1) setNextId(data[index + 1].usr_id);
+                    else setNextId(data[0].usr_id);
                     break;
                 }
             };
@@ -42,7 +36,7 @@ export default function UserDetail({params}) {
                 {(prevId>-1) && <Link href={`/users/${prevId}`} >
                     <IconButton aria-label="prev" size="large" ><ArrowBackIosIcon/></IconButton>
                 </Link>}
-                <UserInfo id={id} />
+                <UserInfo id={id} direction={'column'} />
                 {(nextId>-1) && <Link href={`/users/${nextId}`} >
                     <IconButton aria-label="next" size="large" ><ArrowForwardIosIcon/></IconButton>
                 </Link>}

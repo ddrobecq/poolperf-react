@@ -64,7 +64,7 @@ export default function PlayerStack(props) {
 
     return (
         <Stack direction={"column"} spacing={6} alignItems={"center"} justifyContent={"space-between"}>
-            <UserInfo id={props.id} size='small' />
+            <UserInfo id={props.id} direction={'column'} />
             <PlayerShot id={props.id} value={getNbShot()} handleClick={handleClickNbShot}/>
             <PlayerPocket id={props.id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>
             <PlayerFoul id={props.id} value={getNbFoul()} total={getNbShot()} handleClick={handleClickNbFoul}/>

@@ -1,6 +1,7 @@
 import { Avatar, Stack, SvgIcon, Typography } from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import useFetch from "@/app/lib/fetchAPI";
+import { _DEBUG } from "@/app/lib/tools";
 
 export default function UserAvatar(props) {
     const [data, isLoading] = useFetch ('/users/'+props.id+'/image', 'GET', null);
@@ -8,15 +9,14 @@ export default function UserAvatar(props) {
 
     return (
         <Stack direction={"column"} justifySelf={'center'} >
-            <Avatar 
+            {(image)
+            ? <Avatar 
                 alt={props.name}
                 src={'data:image/png;base64,'+ image}
-                sx={{ width: 100, height: 100 }}
-            >
-                <SvgIcon sx={{fontSize: 100}} >
-                    <PersonIcon fontSize="large" />
-                </SvgIcon>
-            </Avatar>
+                sx={{ width: 100, height: 100 }} />
+            : <SvgIcon sx={{fontSize: 100}} >
+                <PersonIcon fontSize="large" />
+              </SvgIcon>}
         </Stack>
     );
 }
