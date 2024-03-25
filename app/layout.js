@@ -13,9 +13,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <head>
-        <title>Pool Perf</title>
         <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
-        <link rel='manifest' href='/site.manifest' />
+        <link rel='manifest' href='/site.webmanifest' />
       </head>
       <body>
         <AppRouterCacheProvider >
