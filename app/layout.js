@@ -12,6 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+      <head>
+        <title>Pool Perf</title>
+        <link rel='manifest' href='/site.manifest' />
+      </head>
       <body>
         <AppRouterCacheProvider >
           <ThemeProvider theme={theme}>
