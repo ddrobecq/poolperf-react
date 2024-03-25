@@ -1,6 +1,6 @@
 'use client';
 
-import { BottomNavigation, BottomNavigationAction, Box, Divider, Link, Paper } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Box, Divider } from "@mui/material";
 import RestoreIcon from '@mui/icons-material/Restore';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
