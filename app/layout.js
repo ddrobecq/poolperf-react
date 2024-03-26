@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider >
           <ThemeProvider theme={theme}>
             <CssBaseline/>
-              <Stack margin={1} marginBottom={7} >
+              <Stack margin={1} marginBottom={15} >
                 {children}
                 <Menu />
               </Stack>
