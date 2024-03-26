@@ -15,7 +15,7 @@ export default function Menu (props) {
     }
   
     return(
-        <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={2}>
+        <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} >
             <Divider />
             <BottomNavigation 
             sx={{ height: 100, paddingBottom: 5}}

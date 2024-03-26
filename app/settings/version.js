@@ -4,8 +4,9 @@ export default function Version (props) {
     const version = process.env.REACT_APP_VERSION;
 
     return(
-        <Stack direction={'column'} spacing={1} alignContent={'center'} >
-            <Typography variant='caption'>Pool Perf v{version}</Typography>
+        <Stack width={'100%'} direction={'column'} spacing={1} alignItems={'center'} >
+            <Typography variant='h1'>Pool Perf</Typography>
+            <Typography variant='caption'>v{version}</Typography>
         </Stack>
     );
 }

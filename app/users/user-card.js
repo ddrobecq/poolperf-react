@@ -13,7 +13,7 @@ export default function UserCard (props) {
         if (props.handleSelect) {
             props.handleSelect(props.id);
         } else {
-            router.push(`/users/${props.id}`);
+            router.replace(`/users/${props.id}`);
         }
     }
 

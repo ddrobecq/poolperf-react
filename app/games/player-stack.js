@@ -39,14 +39,23 @@ function PlayerFoul(props) {
 }
 
 export default function PlayerStack(props) {
-    const [nbShot, setNbShot] = useState(0);
-    const [nbPocket, setNbPocket] = useState(0);
-    const [nbFoul, setNbFoul] = useState(0);
+    const [nbShot, setNbShot] = useState(props.player.nbShot);
+    const [nbPocket, setNbPocket] = useState(props.player.nbPocket);
+    const [nbFoul, setNbFoul] = useState(props.player.nbFoul);
+    const id = props.player.playerId;
 
     useEffect(() => {
-        const player = {playerId: props.id, nbShot: nbShot, nbPocket: nbPocket, nbFoul: nbFoul};
+        if (props.refresh) {
+            setNbShot(0);
+            setNbPocket(0);
+            setNbFoul(0);
+        }
+    }, [props.refresh]);
+
+    useEffect(() => {
+        const player = {playerId: id, nbShot: nbShot, nbPocket: nbPocket, nbFoul: nbFoul};
         props.updatePlayer(player);
-    }, [nbShot, nbPocket, nbFoul, props]);
+    }, [nbShot, nbPocket, nbFoul, props, id]);
 
     function handleClickNbShot() {
         setNbShot(nbShot + 1);
@@ -70,11 +79,11 @@ export default function PlayerStack(props) {
     }
 
     return (
-        <Stack direction={"column"} spacing={6} alignItems={"center"} justifyContent={"space-between"}>
-            <PlayerButton id={props.id} direction={'column'} handleChangePlayer={props.handleChangePlayer} />
-            <PlayerShot id={props.id} value={getNbShot()} handleClick={handleClickNbShot}/>
-            <PlayerPocket id={props.id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>
-            <PlayerFoul id={props.id} value={getNbFoul()} total={getNbShot()} handleClick={handleClickNbFoul}/>
+        <Stack direction={"column"} spacing={3} alignItems={"center"} justifyContent={"space-between"}>
+            <PlayerButton id={id} direction={'column'} handleChangePlayer={props.handleChangePlayer} />
+            <PlayerShot id={id} value={getNbShot()} handleClick={handleClickNbShot}/>
+            <PlayerPocket id={id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>
+            <PlayerFoul id={id} value={getNbFoul()} total={getNbShot()} handleClick={handleClickNbFoul}/>
         </Stack>
     );
 }
