@@ -1,9 +1,13 @@
 'use client';
 
+import React from 'react';
 import { BottomNavigation, BottomNavigationAction, Box, Divider } from "@mui/material";
-import RestoreIcon from '@mui/icons-material/Restore';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import PoolIcon from '../lib/icon';
 
 export default function Menu (props) {
     const [value, setValue] = useState(0);
@@ -22,12 +26,11 @@ export default function Menu (props) {
             showLabels
             value={value}
             onChange={handleChangeMenu} >
-                <BottomNavigationAction value={'/games'} label="Jouer" icon={<RestoreIcon />} />
-                <BottomNavigationAction value={'/users'} label="Joueurs" icon={<RestoreIcon />} />
-                <BottomNavigationAction value={'/users/1'} label="Statisques" icon={<RestoreIcon />} />
-                <BottomNavigationAction value={'/settings'} label="Paramètres" icon={<RestoreIcon />} />
+                <BottomNavigationAction value={'/games'} label="Jouer" icon={<PoolIcon/>} />
+                <BottomNavigationAction value={'/users'} label="Joueurs" icon={<PeopleAltIcon />} />
+                <BottomNavigationAction value={'/users/1'} label="Statisques" icon={<AssessmentOutlinedIcon />} />
+                <BottomNavigationAction value={'/settings'} label="Paramètres" icon={<SettingsOutlinedIcon />} />
             </BottomNavigation>
         </Box>
     );
-
 }

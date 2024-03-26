@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <head>
         <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
         <link rel='manifest' href='/site.webmanifest' />
       </head>
       <body>
