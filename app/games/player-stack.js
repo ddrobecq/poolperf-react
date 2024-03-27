@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Stack, Typography } from "@mui/material";
-import { BallButton } from "../lib/button";
+import BallButton from "../lib/button";
 import { useEffect, useState } from "react";
 import UserInfo from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
@@ -9,15 +9,13 @@ import { _DEBUG } from "../lib/tools";
 
 function PlayerItem(props) {
     return (
-        <Stack direction={"row"}>
-            <BallButton onClick={props.handleClick} color={props.color} >
-                <Stack direction={"column"} alignItems={"center"} justifyContent={"center"}>
-                    <Typography>{props.label}</Typography>
-                    <Typography>{props.value}</Typography>
-                    {(props.total) && <Typography>{Math.round(props.value / props.total * 100)}%</Typography>}
-                </Stack>
-            </BallButton>
-        </Stack>
+        <BallButton 
+            label={props.label} 
+            value={props.value} 
+            total={props.total} 
+            onClick={props.handleClick} 
+            color={props.color} 
+        />
     );
 }
 
@@ -79,7 +77,7 @@ export default function PlayerStack(props) {
     }
 
     return (
-        <Stack direction={"column"} spacing={3} alignItems={"center"} justifyContent={"space-between"}>
+        <Stack direction={"column"} spacing={0} alignItems={"center"} justifyContent={"space-between"}>
             <PlayerButton id={id} direction={'column'} handleChangePlayer={props.handleChangePlayer} />
             <PlayerShot id={id} value={getNbShot()} handleClick={handleClickNbShot}/>
             <PlayerPocket id={id} value={getNbPocket()} total={getNbShot()} handleClick={handleClickNbPocket}/>

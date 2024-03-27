@@ -38,11 +38,11 @@ const theme = createTheme({
     fontFamily: roboto.style.fontFamily,
     h1: {
       fontSize: '1.5rem',
-      fontWeight: 700,
+      fontWeight: 900,
     },
     h2: {
-      fontSize: '1.1rem',
-      fontWeight: 500,
+      fontSize: '1.2rem',
+      fontWeight: 700,
     },  
   },
   components: {

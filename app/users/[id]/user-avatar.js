@@ -8,11 +8,11 @@ export default function UserAvatar(props) {
     const image = (data) ? data[0].usr_avatar : null;
 
     return (
-        <Stack direction={"column"} justifySelf={'center'} >
+        <Stack direction={"column"} alignItems={'center'} >
             <Avatar 
                 alt={props.name}
                 src={'data:image/png;base64,'+ image}
-                sx={{ width: 100, height: 100 }} />
+                sx={{ width: 90, height: 90 }} />
         </Stack>
     );
 }

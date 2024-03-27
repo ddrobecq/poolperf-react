@@ -72,13 +72,12 @@ export default function Game(props) {
   };
 
   return (
-    <Stack direction={"column"} spacing={2} justifyContent={'space-between'}>
+    <Stack direction={"column"} spacing={1} justifyContent={'space-between'}>
       <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
         <PlayerStack refresh={refresh} player={currentGame.player1} handleChangePlayer={handleChangePlayer1} updatePlayer={updatePlayer1} />
         <Divider orientation="vertical" flexItem />
         <PlayerStack refresh={refresh} player={currentGame.player2} handleChangePlayer={handleChangePlayer2} updatePlayer={updatePlayer2}/>
       </Stack>
-      <Divider />
       <Stack direction={"row"} spacing={2} alignItems={"center"} >
         <Button onClick={handleNew} variant="contained" startIcon={<NotStartedIcon />} >Nouvelle</Button>
         <Button onClick={handleShowRules} variant="contained" startIcon={<GavelIcon />} >Règles</Button>
