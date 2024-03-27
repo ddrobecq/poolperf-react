@@ -7,9 +7,10 @@ import { useRouter } from 'next/navigation';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import PoolIcon from '../lib/icon';
+import { GiPoolTriangle } from "react-icons/gi";
 
-export default function Menu (props) {
+
+export default function Menu () {
     const [value, setValue] = useState(0);
     const router = useRouter();
   
@@ -26,7 +27,7 @@ export default function Menu (props) {
             showLabels
             value={value}
             onChange={handleChangeMenu} >
-                <BottomNavigationAction value={'/games'} label="Jouer" icon={<PoolIcon/>} />
+                <BottomNavigationAction value={'/games'} label="Jouer" icon={<GiPoolTriangle  fontSize={25} />} />
                 <BottomNavigationAction value={'/users'} label="Joueurs" icon={<PeopleAltIcon />} />
                 <BottomNavigationAction value={'/users/1'} label="Statisques" icon={<AssessmentOutlinedIcon />} />
                 <BottomNavigationAction value={'/settings'} label="Paramètres" icon={<SettingsOutlinedIcon />} />
