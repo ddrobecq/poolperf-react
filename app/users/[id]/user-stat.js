@@ -3,7 +3,7 @@ import Loader from "@/app/lib/loader";
 import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 export default function UserDetailStats(props) {
-    const [data, isLoading] = useFetch (`/users/${props.id}/stats`, "GET", null);
+    const data = props.data;
 
     function TypoTableHeader (props) {
         return (
@@ -48,9 +48,9 @@ export default function UserDetailStats(props) {
                     </TableRow>
                     <TableRow>
                         <TableCell><TypoTableHeader title='Fautes'/></TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].avgFoul)}/> : <SkeletonTableCell/>}</TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].minFoul)}/> : <SkeletonTableCell/>}</TableCell>
-                        <TableCell>{(data) ? <TypoTableCell value={formatPercent (data[0].maxFoul)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={(data[0].avgFoul).toFixed(2)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={(data[0].minFoul)}/> : <SkeletonTableCell/>}</TableCell>
+                        <TableCell>{(data) ? <TypoTableCell value={(data[0].maxFoul)}/> : <SkeletonTableCell/>}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

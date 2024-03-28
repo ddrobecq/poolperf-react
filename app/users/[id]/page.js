@@ -11,14 +11,17 @@ import useFetch from "@/app/lib/fetchAPI";
 
 export default function UserDetail({params}) {
     const id = params.id;
+    const [dataStats, isLoadingStats] = useFetch (`/users/${id}/stats`, "GET", null);
+    const [dataGames, isLoadingGames] = useFetch (`/users/${id}/games`, "GET", null);
+
 
     return (
         <Stack direction={"column"} spacing={2} alignItems={"center"} >
             <UserDetailInfo id={id} />
             <Divider />
-            <UserDetailStats id={id} />
+            <UserDetailStats id={id} data={dataStats} />
             <Divider />
-            <UserDetailGames id={id} />
+            <UserDetailGames id={id} dataGames={dataGames} dataStats={dataStats} />
         </Stack>
     );
 }

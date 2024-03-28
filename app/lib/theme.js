@@ -38,11 +38,11 @@ const theme = createTheme({
     fontFamily: roboto.style.fontFamily,
     h1: {
       fontSize: '1.5rem',
-      fontWeight: 900,
+      fontWeight: 'bold',
     },
     h2: {
       fontSize: '1.2rem',
-      fontWeight: 700,
+      fontWeight: 'bold',
     },  
   },
   components: {
@@ -69,10 +69,13 @@ const theme = createTheme({
         variant: "outlined",
         fullWidth: true,
         maxWidth: 'sm',
+        border: 1,
+        borderColor: 'divider',
       },
       styleOverrides: {
         root: {
           borderRadius: 5,
+          bgcolor: 'background.paper',
         },
       },
     },

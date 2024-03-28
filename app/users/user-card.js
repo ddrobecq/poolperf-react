@@ -5,6 +5,7 @@ import UserInfo from "./[id]/user-info";
 import EditIcon from '@mui/icons-material/Edit';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useRouter } from "next/navigation";
+import Camera from "../lib/camera";
 
 export default function UserCard (props) {
     const router = useRouter();
