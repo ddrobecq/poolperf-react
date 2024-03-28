@@ -14,7 +14,6 @@ export default function UserDetail({params}) {
     const [dataStats, isLoadingStats] = useFetch (`/users/${id}/stats`, "GET", null);
     const [dataGames, isLoadingGames] = useFetch (`/users/${id}/games`, "GET", null);
 
-
     return (
         <Stack direction={"column"} spacing={2} alignItems={"center"} >
             <UserDetailInfo id={id} />

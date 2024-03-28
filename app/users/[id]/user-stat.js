@@ -13,7 +13,7 @@ export default function UserDetailStats(props) {
 
     function TypoTableCell (props) {
         return (
-            <Typography variant={"h2"} >{props.value}</Typography>
+            <Typography align={'center'} variant={"h2"} >{props.value}</Typography>
         );
     }
 

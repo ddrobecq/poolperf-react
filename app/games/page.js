@@ -79,7 +79,7 @@ export default function Game(props) {
         <PlayerStack refresh={refresh} player={currentGame.player2} handleChangePlayer={handleChangePlayer2} updatePlayer={updatePlayer2}/>
       </Stack>
       <Divider/>
-      <Stack direction={"row"} spacing={2} alignItems={"center"} >
+      <Stack direction={"row"} spacing={2} justifyContent={'center'} >
         <Button onClick={handleNew} variant="contained" startIcon={<NotStartedIcon />} >Nouvelle</Button>
         <Button onClick={handleShowRules} variant="contained" startIcon={<GavelIcon />} >Règles</Button>
         <Button onClick={handleSaveGame} variant="contained" startIcon={<SaveIcon />} >Enregistrer</Button>

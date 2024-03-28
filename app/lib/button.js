@@ -51,13 +51,13 @@ export default function BallButton(props) {
 
   switch (props.color) {
     case 'success':
-      imageURL = './ball-green.png';
+      imageURL = '/ball-green.png';
       break;
     case 'warning':
-      imageURL = './ball-red.png';
+      imageURL = '/ball-red.png';
       break;
     default:
-      imageURL = './ball-blue.png';
+      imageURL = '/ball-blue.png';
       break;
   };
 
