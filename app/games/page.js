@@ -3,26 +3,27 @@
 import { Stack } from "@mui/system";
 import PlayerStack from "./player-stack";
 import GameSaveDialog from "./game-save";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Divider } from "@mui/material";
 import useLocalStorage from "../lib/localdb";
-import { currentGame } from "../page";
 import NotStartedIcon from '@mui/icons-material/NotStarted';
 import SaveIcon from '@mui/icons-material/Save';
 import GavelIcon from '@mui/icons-material/Gavel';
 import GameRulesDialog from "./game-rules";
 import GameNewDialog from "./game-new";
 import { _DEBUG } from "../lib/tools";
+import { GameContext } from "../lib/context";
 
 export default function Game(props) {
-  const [localStoragePlayerId1, setLocalStoragePlayerId1] = useLocalStorage("PlayerId1", 1);
-  const [localStoragePlayerId2, setLocalStoragePlayerId2] = useLocalStorage("PlayerId2", 2);
-  currentGame.player1.playerId = localStoragePlayerId1;
-  currentGame.player2.playerId = localStoragePlayerId2;
   const [openSave, setOpenSave] = useState(false);
   const [openRules, setOpenRules] = useState(false);
   const [openNew, setOpenNew] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  const { game, setGame } = useContext(GameContext);
+  const [ localStoragePlayer1Id, setLocalStoragePlayer1Id ] = useLocalStorage('PlayerId1', 1);
+  const [ localStoragePlayer2Id, setLocalStoragePlayer2Id ] = useLocalStorage('PlayerId2', 2);
+
+  const player1Id = (game && game.players) ? game.players[0].playerId : null;
+  const player2Id = (game && game.players) ? game.players[1].playerId : null;
 
   function handleClose () {
     setOpenSave(false);
@@ -32,14 +33,15 @@ export default function Game(props) {
   function handleCloseNew(create) {
     setOpenNew(false);
     if (create) {
-      currentGame.reset();
-      setRefresh (true);
+      let newGame = game;
+      newGame.reset();
+      setGame({...newGame});
     }
   };
 
   function handleSaveGame() {
-    setLocalStoragePlayerId1(currentGame.player1.playerId);
-    setLocalStoragePlayerId2(currentGame.player2.playerId);
+    setLocalStoragePlayer1Id(game.players[0].playerId);
+    setLocalStoragePlayer2Id(game.players[1].playerId);
     setOpenSave(true);
   };
 
@@ -51,32 +53,18 @@ export default function Game(props) {
     setOpenNew(true);
   };
 
-  function handleChangePlayer1(id) {
-    currentGame.player1.playerId = id;
-    setLocalStoragePlayerId1(currentGame.player1.playerId);
-  };
-
-  function handleChangePlayer2(id) {
-    currentGame.player2.playerId = id;
-    setLocalStoragePlayerId2(currentGame.player2.playerId);
-  };
-
-  function updatePlayer1(player) {
-    currentGame.player1 = player;
-    if (refresh) setRefresh (false);
-  };
-
-  function updatePlayer2(player) {
-    currentGame.player2 = player;
-    if (refresh) setRefresh (false);
-  };
+  function handleChangePlayer (id, playerId) {
+    let currentGame = game;
+    currentGame.players[id].playerId = playerId;
+    setGame({...currentGame});
+  }
 
   return (
     <Stack direction={"column"} spacing={1} justifyContent={'space-between'}>
       <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
-        <PlayerStack refresh={refresh} player={currentGame.player1} handleChangePlayer={handleChangePlayer1} updatePlayer={updatePlayer1} />
+        <PlayerStack id={0} handleChangePlayer={handleChangePlayer} />
         <Divider orientation="vertical" flexItem />
-        <PlayerStack refresh={refresh} player={currentGame.player2} handleChangePlayer={handleChangePlayer2} updatePlayer={updatePlayer2}/>
+        <PlayerStack id={1} handleChangePlayer={handleChangePlayer} />
       </Stack>
       <Divider/>
       <Stack direction={"row"} spacing={2} justifyContent={'center'} >
@@ -87,8 +75,8 @@ export default function Game(props) {
       <GameSaveDialog
         open={openSave}
         onClose={handleClose}
-        player1={currentGame.player1}
-        player2={currentGame.player2} />
+        player1={player1Id}
+        player2={player2Id} />
       <GameRulesDialog
         open={openRules}
         onClose={handleClose} />

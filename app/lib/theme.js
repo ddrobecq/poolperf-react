@@ -66,16 +66,15 @@ const theme = createTheme({
     },
     MuiDialog: {
       defaultProps: {
-        variant: "outlined",
+        variant: 'outlined',
         fullWidth: true,
         maxWidth: 'sm',
-        border: 1,
-        borderColor: 'divider',
       },
       styleOverrides: {
         root: {
           borderRadius: 5,
-          bgcolor: 'background.paper',
+          border: '1px solid #fff',
+          borderColor: '#fff',
         },
       },
     },

@@ -11,7 +11,7 @@ import { GiPoolTriangle } from "react-icons/gi";
 
 
 export default function Menu () {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState('/games');
     const router = useRouter();
   
     function handleChangeMenu(event, newValue) {

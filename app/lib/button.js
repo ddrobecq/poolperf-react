@@ -1,6 +1,5 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import { _DEBUG } from "./tools";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -35,6 +34,7 @@ function BallTypo (props) {
       sx={{
         position: 'relative',
       }}
+      color={(props.disabled) ? 'text.disabled' : 'text.primary'}
     >
       {props.label}
     </Typography>
@@ -47,19 +47,20 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
 
 
 export default function BallButton(props) {
-  let imageURL;
 
-  switch (props.color) {
-    case 'success':
-      imageURL = '/ball-green.png';
-      break;
-    case 'warning':
-      imageURL = '/ball-red.png';
-      break;
-    default:
-      imageURL = '/ball-blue.png';
-      break;
-  };
+  function getImage() {
+    if (!props.disabled) {
+      switch (props.item) {
+        case 'nbShot':
+          return ('/ball-blue.png');
+        case 'nbPocket':
+          return ('/ball-green.png');
+        case 'nbFoul':
+          return ('/ball-red.png');
+        default:
+      }
+    } else return ('/ball-grey.png');
+}
 
   return (
     <Box justifyContent={'center'} sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 150, width: '100%' }}>
@@ -72,14 +73,14 @@ export default function BallButton(props) {
         }}
         {...props}
       >
-        <ImageSrc style={{ backgroundImage: `url(${imageURL})` }} />
+        <ImageSrc style={{ backgroundImage: `url(${getImage()})` }} />
         <Images>
           <Stack direction={"column"} alignItems={'center'} >
-            <BallTypo label={props.label} />
+            <BallTypo label={props.label} disabled={props.disabled} />
             <Stack direction={"row"} spacing={1} alignItems={'center'} >
-              <BallTypo label={props.value} />
+              <BallTypo label={props.value} disabled={props.disabled} />
               {(props.total) 
-              ? <BallTypo label={Math.round(props.value / props.total * 100)+'%'} />
+              ? <BallTypo label={Math.round(props.value / props.total * 100)+'%'} disabled={props.disabled} />
               : <BallTypo label={''} />
               }
             </Stack>

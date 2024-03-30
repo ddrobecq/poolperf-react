@@ -3,16 +3,17 @@ import Loader from "../lib/loader";
 import { useEffect, useState } from "react";
 import Transition from "../lib/transition";
 import useFetch from "../lib/fetchAPI";
+import { _DEBUG } from "../lib/tools";
 
 function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
-    
+    const id = (props.player) ? props.player : 0;
     //TO DO : TO BE REMOVED WHEN INCLUDE USR_NAME IN PLAYER OBJECT IN API
-    const [userData, isLoading] = useFetch (`/users/${props.player.playerId}`, "GET", null);
+    const [userData, isLoading] = useFetch (`/users/${id}`, "GET", null);
     const [name, setName] = useState (props.player.name);
 
     useEffect (() => {
-        if (userData) {
+        if (userData && userData.length>0) {
             setName(userData[0].usr_name);
         }
     }, [userData]);

@@ -1,5 +1,6 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
+import GameContextProvider from './lib/context';
 import theme from "./lib/theme";
 import { CssBaseline, Stack } from '@mui/material';
 import Menu from './home/menu';
@@ -20,11 +21,13 @@ export default function RootLayout({ children }) {
       <body>
         <AppRouterCacheProvider >
           <ThemeProvider theme={theme}>
-            <CssBaseline/>
-              <Stack margin={1} marginBottom={15} >
-                {children}
-                <Menu />
-              </Stack>
+            <GameContextProvider >
+              <CssBaseline/>
+                <Stack margin={1} marginBottom={15} >
+                    {children}
+                    <Menu />
+                </Stack>
+              </GameContextProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
