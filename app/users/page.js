@@ -1,8 +1,7 @@
 'use client';
 
-import { Stack } from "@mui/material";
+import { Skeleton, Stack } from "@mui/material";
 import useFetch from "../lib/fetchAPI";
-import Loader from "../lib/loader";
 import UserCard from "./user-card";
 
 export default function Users(props) {
@@ -12,9 +11,16 @@ export default function Users(props) {
 
     return (
       <Stack direction={"column"} spacing={2} >
-        {isLoading && <Loader />}
+        {isLoading && 
+          <>
+          <Skeleton variant={'rounded'} height={120} />
+          <Skeleton variant={'rounded'} height={120}/>
+          <Skeleton variant={'rounded'} height={120}/>
+          <Skeleton variant={'rounded'} height={120}/>          
+          </>
+          }
         {data && data.map((user, index) => (
-            <UserCard key={index} id={user.usr_id} direction={direction} actions={actions} {...props} />
+            <UserCard key={index} id={user.usr_id} name={user.usr_name} direction={direction} actions={actions} {...props} />
         ))}
       </Stack>
     )

@@ -2,41 +2,40 @@
 
 import { Card, CardActionArea, CardActions, CardContent, IconButton, Link, Stack } from "@mui/material";
 import UserInfo from "./[id]/user-info";
-import EditIcon from '@mui/icons-material/Edit';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useRouter } from "next/navigation";
-import Camera from "../lib/camera";
+import UserForm from "./user-form";
+import { _DEBUG } from "../lib/tools";
+import { useState } from "react";
 
 export default function UserCard (props) {
     const router = useRouter();
+    const [openUpdate, setOpenUpdate] = useState(false);
+
+    function onUpdate (status) {
+        setOpenUpdate(false);
+        if (status) {
+            router.push(`/users`);
+        }
+    }
 
     function handleSelect() {
         if (props.handleSelect) {
             props.handleSelect(props.id);
         } else {
-            router.replace(`/users/${props.id}`);
+            setOpenUpdate(true);
         }
     }
 
     return (
         <Card >
             <Stack direction={"row"} >
-                {(props.actions) && <CardActions>
-                    <Stack direction={'column'} >
-                        <IconButton aria-label="edit" size="large" >
-                            <EditIcon />
-                        </IconButton>
-                        <IconButton aria-label="change-avatar" size="large" >
-                            <CameraAltIcon />
-                        </IconButton>
-                    </Stack>
-                </CardActions>}
-                    <CardActionArea onClick={handleSelect} >
-                        <CardContent>
-                            <UserInfo id={props.id} direction={'row'} />
-                        </CardContent>
-                    </CardActionArea>
+                <CardActionArea onClick={handleSelect} >
+                    <CardContent>
+                        <UserInfo id={props.id} direction={'row'} />
+                    </CardContent>
+                </CardActionArea>
             </Stack>
+            <UserForm id={props.id} name={props.name} open={openUpdate} onClose={onUpdate} />
         </Card>
     );
 }

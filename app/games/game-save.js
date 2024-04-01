@@ -1,9 +1,10 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Stack, Switch, Typography } from "@mui/material";
 import Loader from "../lib/loader";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Transition from "../lib/transition";
 import useFetch from "../lib/fetchAPI";
 import { _DEBUG } from "../lib/tools";
+import { GameContext } from "../lib/context";
 
 function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
@@ -79,11 +80,12 @@ export default function GameSaveDialog (props) {
 function GamePlayerSave (props) {
     const [playerSaved, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player));
     const [isSaved, setIsSaved] = useState (false);
+    const {game, setGame} = useContext(GameContext);
 
     /* BUILD JSON BODY FOR SAVNG A GAME */
     function strGameBody (player){
         let body = {
-          gameType: "gameType", //TODO getParam ("gameType"),
+          gameType: game.type,
           player: player
         };
         let strBody = JSON.stringify (body);

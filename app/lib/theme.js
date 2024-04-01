@@ -18,21 +18,6 @@ const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
 const theme = createTheme({
   palette: {
     mode: 'dark',
-    primary: {
-      main: '#1976d2',
-    },
-    error: {
-      main: '#d32f2f',
-    },
-    warning: {
-      main: '#ed6c02',
-    },
-    success: {
-      main: '#2e7d32',
-    },
-    text: {
-      primary: '#fff',
-    },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
