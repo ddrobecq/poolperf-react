@@ -71,7 +71,7 @@ export default function GameSaveDialog (props) {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleCancel}>Annuler</Button>
-                <Button color={"success"} onClick={handleConfirm} type="submit">Confirmer</Button>
+                <Button color={"success"} onClick={handleConfirm} >Confirmer</Button>
             </DialogActions>
         </Dialog>
     );

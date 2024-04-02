@@ -29,6 +29,9 @@ const theme = createTheme({
       fontSize: '1.2rem',
       fontWeight: 'bold',
     },  
+    button: {
+      textTransform: 'none',
+    },
   },
   components: {
     MuiLink: {

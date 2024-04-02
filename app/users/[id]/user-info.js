@@ -6,10 +6,11 @@ import UserAvatar from "./user-avatar";
 export default function UserInfo (props) {
     const id = (props.id) ? props.id : 0;
     const [data, isLoading] = useFetch (`/users/${id}`, "GET", null);
+    const spacing = (props.direction === 'row') ? 4 : 1;
 
     return (
         <Stack direction={"column"} >
-            <Stack direction={props.direction} alignItems={'center'} spacing={4} >
+            <Stack direction={props.direction} alignItems={'center'} spacing={spacing} >
                 {(id === 0)
                 ?   <>
                         <UserAvatar id={0} />
