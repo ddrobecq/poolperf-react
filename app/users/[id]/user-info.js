@@ -9,11 +9,19 @@ export default function UserInfo (props) {
 
     return (
         <Stack direction={"column"} >
-            <Stack direction={props.direction} spacing={1} >
-                <UserAvatar id={props.id} />
-                <Typography align='center' variant={"h1"}>
-                    {(data && data.length>0) ? data[0].usr_name : <Skeleton variant="h1" />}
-                </Typography>
+            <Stack direction={props.direction} alignItems={'center'} spacing={4} >
+                {(id === 0)
+                ?   <>
+                        <UserAvatar id={0} />
+                        <Typography align='center' variant={"h1"}>Nouveau joueur</Typography>
+                    </>
+                :   <>
+                        <UserAvatar id={props.id} />
+                        <Typography align='center' variant={"h1"}>
+                            {(data && data.length>0) ? data[0].usr_name : <Skeleton variant="h1" />}
+                        </Typography>
+                    </>
+                }
             </Stack>
         </Stack>
 );

@@ -8,7 +8,6 @@ import { useState } from "react";
 
 export default function UserCard (props) {
     const [openUpdate, setOpenUpdate] = useState(false);
-
     function onUpdate (status) {
         setOpenUpdate(false);
         if (status) {
@@ -33,7 +32,7 @@ export default function UserCard (props) {
                     </CardContent>
                 </CardActionArea>
             </Stack>
-            <UserForm id={props.id} name={props.name} open={openUpdate} onClose={onUpdate} />
+            <UserForm id={props.id} name={props.name} title={"Modifier un joueur"} open={openUpdate} onClose={onUpdate} />
         </Card>
     );
 }

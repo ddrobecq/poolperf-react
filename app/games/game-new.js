@@ -25,7 +25,7 @@ export default function GameNewDialog(props) {
             <DialogTitle>Démarrer une nouvelle partie ?</DialogTitle>
             <DialogActions>
                 <Button onClick={handleCancel}>Non</Button>
-                <Button onClick={handleConfirm} type="submit">Oui</Button>
+                <Button color={"success"} onClick={handleConfirm} type="submit">Oui</Button>
             </DialogActions>
         </Dialog>
     );

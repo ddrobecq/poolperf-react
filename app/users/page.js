@@ -16,12 +16,12 @@ export default function Users(props) {
           <Skeleton variant={'rounded'} height={120} />
           <Skeleton variant={'rounded'} height={120}/>
           <Skeleton variant={'rounded'} height={120}/>
-          <Skeleton variant={'rounded'} height={120}/>          
           </>
-          }
+        }
         {data && data.map((user, index) => (
             <UserCard key={index} id={user.usr_id} name={user.usr_name} direction={direction} actions={actions} {...props} />
         ))}
+        <UserCard key={'new'} id={0} name={""} direction={direction} actions={actions} {...props} />
       </Stack>
     )
   }

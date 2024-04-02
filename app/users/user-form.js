@@ -22,7 +22,7 @@ export default function UserForm (props) {
 
     return (
         <Dialog open={props.open} onClose={props.onClose} >
-            <DialogTitle>Modifier un joueur</DialogTitle>
+            <DialogTitle>{props.title}</DialogTitle>
             <DialogContent>
                 <Stack direction={"row"} spacing={1} >
                     <UserAvatar id={props.id} />
@@ -33,14 +33,16 @@ export default function UserForm (props) {
                         defaultValue={name} 
                         label={'Nom du joueur'} 
                         onChange={(e) => setName(e.target.value)}
-                        variant={'filled'} />
+                        variant={'filled'} 
+                        size={'large'}
+                        />
                 </Stack>
             </DialogContent>
             <DialogActions>
                 <Button onClick={onCancel}>Annuler</Button>
                 {(isUpdating)
                 ? <UserSave id={props.id} name={name} onClose={onValidate} />
-                : <Button onClick={onUpdate}>Enregistrer</Button>}
+                : <Button color={"success"} onClick={onUpdate}>Enregistrer</Button>}
             </DialogActions>
         </Dialog>
     );

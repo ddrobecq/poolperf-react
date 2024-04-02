@@ -5,7 +5,9 @@ import { Button } from '@mui/material';
 import { _DEBUG } from '../lib/tools';
 
 export default function UserSave (props) {
-    const [result, isSaving] = useFetch(`/users/${props.id}`, 'PUT', strUserBody (props.name));
+    const method = (props.id == 0) ? 'POST' : 'PUT';
+    const url = (props.id == 0) ? '/users' : `/users/${props.id}`;
+    const [result, isSaving] = useFetch(url, method, strUserBody (props.name));
     const [error, setError] = useState(false);
     const [updated, setUpdated] = useState(false);
 

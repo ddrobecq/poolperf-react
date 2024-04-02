@@ -25,7 +25,7 @@ export default function GameRulesDialog(props) {
             <DialogTitle>{title}</DialogTitle>
             <DialogActions>
                 <Button onClick={handleCancel}>Non</Button>
-                <Button onClick={handleConfirm} type="submit">Oui</Button>
+                <Button color={'success'} onClick={handleConfirm} type="submit">Oui</Button>
             </DialogActions>
         </Dialog>
     );
