@@ -2,19 +2,17 @@
 
 import { Card, CardActionArea, CardActions, CardContent, IconButton, Link, Stack } from "@mui/material";
 import UserInfo from "./[id]/user-info";
-import { useRouter } from "next/navigation";
 import UserForm from "./user-form";
 import { _DEBUG } from "../lib/tools";
 import { useState } from "react";
 
 export default function UserCard (props) {
-    const router = useRouter();
     const [openUpdate, setOpenUpdate] = useState(false);
 
     function onUpdate (status) {
         setOpenUpdate(false);
         if (status) {
-            router.push(`/users`);
+            if (window) window.location.reload();
         }
     }
 
