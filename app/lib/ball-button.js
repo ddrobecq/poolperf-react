@@ -47,9 +47,10 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
 
 
 export default function BallButton(props) {
+  const opacity = (props.disabled) ? 0.3 : 1;
 
   function getImage() {
-    if (!props.disabled) {
+    //if (!props.disabled) {
       switch (props.item) {
         case 'nbShot':
           return ('/ball-blue.png');
@@ -59,7 +60,7 @@ export default function BallButton(props) {
           return ('/ball-red.png');
         default:
       }
-    } else return ('/ball-grey.png');
+    //} else return ('/ball-grey.png');
 }
 
   return (
@@ -73,7 +74,7 @@ export default function BallButton(props) {
         }}
         {...props}
       >
-        <ImageSrc style={{ backgroundImage: `url(${getImage()})` }} />
+        <ImageSrc style={{ backgroundImage: `url(${getImage()})`, opacity: opacity }} />
         <Images>
           <Stack direction={"column"} alignItems={'center'} >
             <BallTypo label={props.label} disabled={props.disabled} />

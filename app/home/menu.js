@@ -8,15 +8,27 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { GiPoolTriangle } from "react-icons/gi";
+import { useWakeLock } from 'react-screen-wake-lock';
+import { _DEBUG } from '../lib/tools';
 
 
 export default function Menu () {
     const [value, setValue] = useState('/games');
     const router = useRouter();
-  
+    const { isSupported, released, request, release } = useWakeLock({
+        onRequest: () => _DEBUG('Screen Wake Lock: requested!'),
+        onError: () => console.error('An error happened when requesting the screen wake lock.'),
+        onRelease: () => _DEBUG('Screen Wake Lock: released!'),
+    });
+      
     function handleChangeMenu(event, newValue) {
-      setValue(newValue);
-      router.push(newValue);
+        if (newValue === '/games') {
+            request();
+        } else {
+            release();
+        }
+        setValue(newValue);
+        router.push(newValue);
     }
   
     return(
