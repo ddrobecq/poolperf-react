@@ -1,5 +1,3 @@
-import useFetch from "@/app/lib/fetchAPI";
-import Loader from "@/app/lib/loader";
 import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 export default function UserDetailStats(props) {

@@ -5,7 +5,6 @@ import BallButton from "../lib/ball-button";
 import { useContext, useState } from "react";
 import UserInfo from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
-import { _DEBUG } from "../lib/tools";
 import { GameContext } from "../lib/context";
 
 function PlayerItem(props) {

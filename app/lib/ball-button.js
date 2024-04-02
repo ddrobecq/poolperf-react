@@ -47,7 +47,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
 
 
 export default function BallButton(props) {
-  const opacity = (props.disabled) ? 0.3 : 1;
+  const opacity = (props.disabled) ? 0.2 : 1;
 
   function getImage() {
     //if (!props.disabled) {

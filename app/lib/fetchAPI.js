@@ -48,7 +48,7 @@ function callAPI(strPath, strMethod, strPayLoad, bRetry) {
         xhr.responseType = "json";
         xhr.onload = function() {
             if (this.status === 200) {
-                _DEBUG ("received : ", this.response);
+                //_DEBUG ("received : ", this.response);
                 resolve(this.response);
             } else {
                 console.error ('received : ', `ERROR ${this.status}`, JSON.stringify(this.response));
@@ -76,6 +76,6 @@ function callAPI(strPath, strMethod, strPayLoad, bRetry) {
             });
         };
         xhr.send(strPayLoad);       
-        _DEBUG ("sent : ", `${strMethod} ${strPath} ${strPayLoad}`); 
+        //_DEBUG ("sent : ", `${strMethod} ${strPath} ${strPayLoad}`); 
     });
 };
