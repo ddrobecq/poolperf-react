@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField } from "@mui/material";
 import UserAvatar from "./[id]/user-avatar";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import SaveIcon from '@mui/icons-material/Save';
 import UserSave from "./user-save";
 import { useState } from "react";
 
@@ -42,7 +43,7 @@ export default function UserForm (props) {
                 <Button onClick={onCancel}>Annuler</Button>
                 {(isUpdating)
                 ? <UserSave id={props.id} name={name} onClose={onValidate} />
-                : <Button color={"success"} onClick={onUpdate}>Enregistrer</Button>}
+                : <Button color={"success"} onClick={onUpdate} startIcon={<SaveIcon />} >Enregistrer</Button>}
             </DialogActions>
         </Dialog>
     );

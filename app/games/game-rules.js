@@ -4,28 +4,22 @@ import { useContext } from "react";
 import { GameContext } from "../lib/context";
 
 export default function GameRulesDialog(props) {
-    const {onClose, open} = props;
     const {game, setGame} = useContext(GameContext);
     const title = (game) ? "Règle du jeu " + game.type : "";
 
     function handleConfirm() {
-        onClose(true);
-    }
-
-    function handleCancel() {
-        onClose(false);
+        props.onClose(true);
     }
 
     return (
         <Dialog
-          open={open} 
-          onClose={handleCancel} 
+          open={props.open} 
+          onClose={handleConfirm} 
           TransitionComponent={Transition} 
           keepMounted >
             <DialogTitle>{title}</DialogTitle>
             <DialogActions>
-                <Button onClick={handleCancel}>Non</Button>
-                <Button color={'success'} onClick={handleConfirm} >Oui</Button>
+                <Button onClick={handleConfirm} >Fermer</Button>
             </DialogActions>
         </Dialog>
     );

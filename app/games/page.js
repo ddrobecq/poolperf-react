@@ -3,7 +3,7 @@
 import { Stack } from "@mui/system";
 import PlayerStack from "./player-stack";
 import GameSaveDialog from "./game-save";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Divider } from "@mui/material";
 import useLocalStorage from "../lib/localdb";
 import NotStartedIcon from '@mui/icons-material/NotStarted';
@@ -12,6 +12,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import GameRulesDialog from "./game-rules";
 import GameNewDialog from "./game-new";
 import { _DEBUG } from "../lib/tools";
+import { useWakeLock } from 'react-screen-wake-lock';
 import { GameContext } from "../lib/context";
 
 export default function Game(props) {
@@ -21,9 +22,20 @@ export default function Game(props) {
   const { game, setGame } = useContext(GameContext);
   const [ localStoragePlayer1Id, setLocalStoragePlayer1Id ] = useLocalStorage('PlayerId1', 1);
   const [ localStoragePlayer2Id, setLocalStoragePlayer2Id ] = useLocalStorage('PlayerId2', 2);
+  const { isSupported, released, request, release } = useWakeLock({
+    onRequest: () => _DEBUG('Screen Wake Lock: requested!'),
+    onError: () => console.error('An error happened when requesting the screen wake lock.'),
+    onRelease: () => _DEBUG('Screen Wake Lock: released!'),
+  });
 
   const player1Id = (game && game.players) ? game.players[0].playerId : null;
   const player2Id = (game && game.players) ? game.players[1].playerId : null;
+
+  useEffect(() => {
+    if (isSupported && (released === undefined || released === true)) {
+      request();
+    }
+  }), [isSupported, released, request];
 
   function handleClose () {
     setOpenSave(false);
