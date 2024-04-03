@@ -1,10 +1,13 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Stack, Switch, Typography } from "@mui/material";
+import { Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Stack, Switch, Typography } from "@mui/material";
 import Loader from "../lib/loader";
 import { useContext, useEffect, useState } from "react";
 import Transition from "../lib/transition";
 import useFetch from "../lib/fetchAPI";
 import { _DEBUG } from "../lib/tools";
 import { GameContext } from "../lib/context";
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import DoneIcon from '@mui/icons-material/Done';
+import CloudSyncIcon from '@mui/icons-material/CloudSync';
 
 function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
@@ -30,7 +33,7 @@ function GameSaveDialogPlayerLine(props) {
                 <Typography>Pour {name} ?</Typography>
                 <Box  >
                     {(props.isConfirmed && checked) 
-                        ? <GamePlayerSave player={props.player} />
+                        ? <GamePlayerSave player={props.player} onClose={props.onClose} />
                         : <Switch checked={checked} onChange={handleChecked} />
                     }
                 </Box>
@@ -49,11 +52,12 @@ export default function GameSaveDialog (props) {
 
     function handleCancel() {
         setIsConfirmed(false);
-        handleClose();
+        onClose();
     }
 
     function handleClose () {
-        onClose();
+        //onClose();
+        _DEBUG("GameSaveDialog handleClose");
     }
 
     return (
@@ -65,13 +69,13 @@ export default function GameSaveDialog (props) {
             <DialogTitle>Enregistrer la partie ?</DialogTitle>
             <DialogContent>
                 <Stack direction={"column"} spacing={2} >
-                    <GameSaveDialogPlayerLine player={props.player1} isConfirmed={isConfirmed} />
-                    <GameSaveDialogPlayerLine player={props.player2} isConfirmed={isConfirmed} />
+                    <GameSaveDialogPlayerLine player={props.player1} isConfirmed={isConfirmed} onClose={handleClose} />
+                    <GameSaveDialogPlayerLine player={props.player2} isConfirmed={isConfirmed} onClose={handleClose} />
                 </Stack>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleCancel}>Annuler</Button>
-                <Button color={"success"} onClick={handleConfirm} >Confirmer</Button>
+                <Button onClick={handleCancel}>{(!isConfirmed) ? 'Annuler' : 'Fermer'}</Button>
+                <Button color={"success"} onClick={handleConfirm} disabled={isConfirmed} >Confirmer</Button>
             </DialogActions>
         </Dialog>
     );
@@ -80,7 +84,8 @@ export default function GameSaveDialog (props) {
 function GamePlayerSave (props) {
     const [isSaved, setIsSaved] = useState (false);
     const {game, setGame} = useContext(GameContext);
-    const [playerSaved, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player));
+    const [error, setError] = useState(false);
+    const [result, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player));
 
     /* BUILD JSON BODY FOR SAVNG A GAME */
     function strGameBody (player){
@@ -93,26 +98,29 @@ function GamePlayerSave (props) {
       }
     
     useEffect (() => {
-        if (playerSaved) {
-            setIsSaved(true);
-        }
-    }, [playerSaved]);
+        if (result) {
+            if (result.affectedRows === 1) {
+                setIsSaved (true);
+            } else {
+                setError (true);
+            }
+        } 
+    }, [result]);
       
-    if (isSaving) {
-        return (<Loader />);
-    } else {
+    useEffect(() => {
         if (isSaved) {
-            return (
-                <div>
-                    <p>saved</p>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <p>error</p>
-                </div>
-            );
-        }
-    }
+            props.onClose();
+        } 
+    }, [props, isSaved]);
+
+    return (
+        <>
+            {(error) 
+            ?   <Chip icon={<ReportProblemIcon/>} color={'error'} label={'Erreur'} />
+            :   (isSaved)
+                ?   <Chip icon={<DoneIcon/>} color={'success'} label={'Enregistré'} />
+                :   <Chip icon={<CloudSyncIcon/>} color={'primary'} label={'En cours...'} />
+            }
+        </>
+    );
 }
