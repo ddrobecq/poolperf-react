@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import useLocalStorage from "./localdb";
 import { _DEBUG } from "./tools";
 
@@ -10,6 +10,15 @@ export default function GameContextProvider({children}) {
     const [ player1Id, setPlayer1Id ] = useLocalStorage('PlayerId1', 1);
     const [ player2Id, setPlayer2Id ] = useLocalStorage('PlayerId2', 2);
     const [game, setGame] = useState(initGame());
+
+    useEffect(() => {
+        if (game.players[0].playerId !== player1Id) {
+            setPlayer1Id(game.players[0].playerId);
+        }
+        if (game.players[1].playerId !== player2Id) {
+            setPlayer2Id(game.players[1].playerId);
+        }
+    },[game, player1Id, player2Id, setPlayer1Id, setPlayer2Id]);
 
     function initGame() {
         const newGame = {

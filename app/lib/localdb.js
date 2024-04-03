@@ -1,35 +1,39 @@
 'use client';
 
-import { useState } from "react"
-import { _DEBUG } from "./tools"
+import { useEffect, useState } from 'react';
+import { _DEBUG } from './tools';
 
-const useLocalStorage = (key, initialValue) => {
-  const [state, setState] = useState(() => {
-    // Initialize the state
+// **********************************************
+// function : useLocalStorage
+//  storageKey : key to get back the stored content
+//  defaultValue : default content to get if no content is stored
+// description : React hook to set and get content in local storage
+// **********************************************
+export default function useLocalStorage (storageKey, defaultValue) {
+  const [value, setValue] = useState (initValue());
+  
+  function initValue() {
     try {
-      const value = localStorage.getItem(key)
-      // Check if the local storage already has any values,
-      // otherwise initialize it with the passed initialValue
-      return value ? JSON.parse(value) : initialValue
+      if (typeof window !== 'undefined') {
+        const storedValue = JSON.parse(window.localStorage.getItem(storageKey));
+        return storedValue;
+      }
     } catch (error) {
-      console.log(error)
-      return initialValue;
+        console.error('useLocalStorage', 'get', error);
+        return defaultValue;        
     }
-  })
-
-  const setValue = value => {
-    try {
-      // If the passed value is a callback function,
-      //  then call it with the existing state.
-      const valueToStore = value instanceof Function ? value(state) : value
-      localStorage.setItem(key, JSON.stringify(valueToStore))
-      setState(value)
-    } catch (error) {
-      console.log(error)
-    }
+    return defaultValue;
   }
 
-  return [state, setValue]
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(storageKey, JSON.stringify(value));
+      }
+    } catch (error) {
+      console.error('useLocalStorage', 'set', error);
+    }
+  }, [value, storageKey]);
+  
+  return [value, setValue];
 }
-
-export default useLocalStorage

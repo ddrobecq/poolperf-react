@@ -76,6 +76,6 @@ function callAPI(strPath, strMethod, strPayLoad, bRetry) {
             });
         };
         xhr.send(strPayLoad);       
-        //_DEBUG ("sent : ", `${strMethod} ${strPath} ${strPayLoad}`); 
+        _DEBUG ("sent : ", `${strMethod} ${strPath} ${strPayLoad}`); 
     });
 };

@@ -4,6 +4,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import SaveIcon from '@mui/icons-material/Save';
 import UserSave from "./user-save";
 import { useState } from "react";
+import Transition from "../lib/transition";
 
 export default function UserForm (props) {
     const [isUpdating, setIsUpdating] = useState(false);
@@ -22,7 +23,7 @@ export default function UserForm (props) {
     }
 
     return (
-        <Dialog open={props.open} onClose={props.onClose} >
+        <Dialog open={props.open} onClose={props.onClose} TransitionComponent={Transition} >
             <DialogTitle>{props.title}</DialogTitle>
             <DialogContent>
                 <Stack direction={"row"} spacing={1} >

@@ -20,16 +20,11 @@ export default function Game(props) {
   const [openRules, setOpenRules] = useState(false);
   const [openNew, setOpenNew] = useState(false);
   const { game, setGame } = useContext(GameContext);
-  const [ localStoragePlayer1Id, setLocalStoragePlayer1Id ] = useLocalStorage('PlayerId1', 1);
-  const [ localStoragePlayer2Id, setLocalStoragePlayer2Id ] = useLocalStorage('PlayerId2', 2);
   const { isSupported, released, request, release } = useWakeLock({
     onRequest: () => _DEBUG('Screen Wake Lock: requested!'),
     onError: () => console.error('An error happened when requesting the screen wake lock.'),
     onRelease: () => _DEBUG('Screen Wake Lock: released!'),
   });
-
-  const player1Id = (game && game.players) ? game.players[0].playerId : null;
-  const player2Id = (game && game.players) ? game.players[1].playerId : null;
 
   useEffect(() => {
     if (isSupported && (released === undefined || released === true)) {
@@ -52,8 +47,6 @@ export default function Game(props) {
   };
 
   function handleSaveGame() {
-    setLocalStoragePlayer1Id(game.players[0].playerId);
-    setLocalStoragePlayer2Id(game.players[1].playerId);
     setOpenSave(true);
   };
 
@@ -87,8 +80,8 @@ export default function Game(props) {
       <GameSaveDialog
         open={openSave}
         onClose={handleClose}
-        player1={player1Id}
-        player2={player2Id} />
+        player1={(game && game.players) ? game.players[0] : null}
+        player2={(game && game.players) ? game.players[1] : null} />
       <GameRulesDialog
         open={openRules}
         onClose={handleClose} />

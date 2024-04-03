@@ -8,7 +8,7 @@ import { GameContext } from "../lib/context";
 
 function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
-    const id = (props.player) ? props.player : 0;
+    const id = (props.player) ? props.player.playerId : 0;
     //TO DO : TO BE REMOVED WHEN INCLUDE USR_NAME IN PLAYER OBJECT IN API
     const [userData, isLoading] = useFetch (`/users/${id}`, "GET", null);
     const [name, setName] = useState (props.player.name);
@@ -24,7 +24,7 @@ function GameSaveDialogPlayerLine(props) {
         setChecked(!checked);
     }
 
-    if (props.player){
+    if (props.player) {
         return (
             <Stack direction={"row"} spacing={2} alignItems={'center'}>
                 <Typography>Pour {name} ?</Typography>
@@ -78,9 +78,9 @@ export default function GameSaveDialog (props) {
 }
 
 function GamePlayerSave (props) {
-    const [playerSaved, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player));
     const [isSaved, setIsSaved] = useState (false);
     const {game, setGame} = useContext(GameContext);
+    const [playerSaved, isSaving] = useFetch (`/games`, "POST", strGameBody (props.player));
 
     /* BUILD JSON BODY FOR SAVNG A GAME */
     function strGameBody (player){
