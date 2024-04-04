@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 import NextLink from 'next/link';
 import { forwardRef } from 'react';
+import Transition from './transition';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -18,6 +19,10 @@ const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
 const theme = createTheme({
   palette: {
     mode: 'dark',
+    background: {
+      default: '#121212',
+      paper: '#393939',
+    },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
@@ -54,15 +59,16 @@ const theme = createTheme({
     },
     MuiDialog: {
       defaultProps: {
+        TransitionComponent: Transition,
         variant: 'outlined',
         fullWidth: true,
         maxWidth: 'sm',
       },
       styleOverrides: {
-        root: {
+        paper: {
+          backgroundColor: '#121212',
           borderRadius: 5,
-          border: '1px solid #fff',
-          borderColor: '#fff',
+          border: '1px solid',
         },
       },
     },

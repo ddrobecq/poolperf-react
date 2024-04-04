@@ -27,7 +27,7 @@ function PlayerItem(props) {
         <BallButton 
             label={props.label} 
             value={game.players[props.id][props.item]} 
-            total={(props.total) && game.players[props.id].nbShot} 
+            total={(props.totalDisplay) ? game.players[props.id].nbShot : 0} 
             item={props.item}
             onClick={handleClick} 
             disabled={(!isActive())}
@@ -36,15 +36,15 @@ function PlayerItem(props) {
 }
 
 function PlayerShot(props) {
-    return (<PlayerItem item={'nbShot'} label={'Coups'} {...props} total={false} />);
+    return (<PlayerItem item={'nbShot'} label={'Coups'} {...props} totalDisplay={false} />);
 }
 
 function PlayerPocket(props) {
-    return (<PlayerItem item={'nbPocket'} label={'Empochées'} total {...props}/>);
+    return (<PlayerItem item={'nbPocket'} label={'Empochées'} totalDisplay {...props}/>);
 }
 
 function PlayerFoul(props) {
-    return (<PlayerItem item={'nbFoul'} label={'Fautes'} total {...props} />);
+    return (<PlayerItem item={'nbFoul'} label={'Fautes'} totalDisplay {...props} />);
 }
 
 export default function PlayerStack(props) {

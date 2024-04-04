@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <head>
-        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="msapplication-TileColor" content="#121212" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="icon" type="image/png" sizes="196x196" href="favicon-196.png" />

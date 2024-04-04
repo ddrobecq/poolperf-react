@@ -1,7 +1,5 @@
 import { Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Stack, Switch, Typography } from "@mui/material";
-import Loader from "../lib/loader";
 import { useContext, useEffect, useState } from "react";
-import Transition from "../lib/transition";
 import useFetch from "../lib/fetchAPI";
 import { _DEBUG } from "../lib/tools";
 import { GameContext } from "../lib/context";
@@ -64,7 +62,6 @@ export default function GameSaveDialog (props) {
         <Dialog 
           open={open} 
           onClose={handleClose} 
-          TransitionComponent={Transition} 
           keepMounted >
             <DialogTitle>Enregistrer la partie ?</DialogTitle>
             <DialogContent>

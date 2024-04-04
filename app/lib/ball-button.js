@@ -50,18 +50,16 @@ export default function BallButton(props) {
   const opacity = (props.disabled) ? 0.2 : 1;
 
   function getImage() {
-    //if (!props.disabled) {
-      switch (props.item) {
-        case 'nbShot':
-          return ('/ball-blue.png');
-        case 'nbPocket':
-          return ('/ball-green.png');
-        case 'nbFoul':
-          return ('/ball-red.png');
-        default:
-      }
-    //} else return ('/ball-grey.png');
-}
+    switch (props.item) {
+      case 'nbShot':
+        return ('/ball-blue.png');
+      case 'nbPocket':
+        return ('/ball-green.png');
+      case 'nbFoul':
+        return ('/ball-red.png');
+      default:
+    }
+  }
 
   return (
     <Box justifyContent={'center'} sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 150, width: '100%' }}>

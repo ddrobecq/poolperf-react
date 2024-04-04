@@ -1,6 +1,4 @@
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import Transition from "../lib/transition";
-import { currentGame } from "../page";
 import { useRouter } from "next/navigation";
 import { _DEBUG } from "../lib/tools";
 
@@ -20,7 +18,6 @@ export default function GameNewDialog(props) {
         <Dialog
           open={open} 
           onClose={handleCancel} 
-          TransitionComponent={Transition} 
           keepMounted >
             <DialogTitle>Démarrer une nouvelle partie ?</DialogTitle>
             <DialogActions>

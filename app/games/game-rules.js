@@ -1,5 +1,4 @@
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import Transition from "../lib/transition";
 import { useContext } from "react";
 import { GameContext } from "../lib/context";
 
@@ -15,7 +14,6 @@ export default function GameRulesDialog(props) {
         <Dialog
           open={props.open} 
           onClose={handleConfirm} 
-          TransitionComponent={Transition} 
           keepMounted >
             <DialogTitle>{title}</DialogTitle>
             <DialogActions>
