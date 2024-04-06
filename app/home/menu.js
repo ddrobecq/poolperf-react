@@ -3,7 +3,7 @@
 import React from 'react';
 import { BottomNavigation, BottomNavigationAction, Box, Divider } from "@mui/material";
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -12,8 +12,9 @@ import { _DEBUG } from '../lib/tools';
 
 
 export default function Menu () {
-    const [value, setValue] = useState('/games');
     const router = useRouter();
+    const pathname = usePathname();
+    const [value, setValue] = useState(pathname);
       
     function handleChangeMenu(event, newValue) {
         setValue(newValue);

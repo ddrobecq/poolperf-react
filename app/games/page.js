@@ -1,10 +1,9 @@
 'use client';
 
-import { Stack } from "@mui/system";
 import PlayerStack from "./player-stack";
 import GameSaveDialog from "./game-save";
 import { useContext, useEffect, useState } from "react";
-import { Button, Divider } from "@mui/material";
+import { Button, Divider, Chip, Stack } from "@mui/material";
 import useLocalStorage from "../lib/localdb";
 import NotStartedIcon from '@mui/icons-material/NotStarted';
 import SaveIcon from '@mui/icons-material/Save';
@@ -12,25 +11,21 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import GameRulesDialog from "./game-rules";
 import GameNewDialog from "./game-new";
 import { _DEBUG } from "../lib/tools";
-import { useWakeLock } from 'react-screen-wake-lock';
 import { GameContext } from "../lib/context";
+import useSleepLock from "../lib/sleepLock";
 
 export default function Game(props) {
   const [openSave, setOpenSave] = useState(false);
   const [openRules, setOpenRules] = useState(false);
   const [openNew, setOpenNew] = useState(false);
   const { game, setGame } = useContext(GameContext);
-  const { isSupported, released, request, release } = useWakeLock({
-    onRequest: () => _DEBUG('Screen Wake Lock: requested!'),
-    onError: () => console.error('An error happened when requesting the screen wake lock.'),
-    onRelease: () => _DEBUG('Screen Wake Lock: released!'),
-  });
+  const [isSupported, isActive, request, release] = useSleepLock();
+  const [sleepLock, setSleepLock] = useLocalStorage('is-sleep-locked', true);
 
   useEffect(() => {
-    if (isSupported && (released === undefined || released === true)) {
-      request();
-    }
-  }), [isSupported, released, request];
+    _DEBUG ('sleepLock=', isActive);
+    if (isSupported && sleepLock && !isActive) request();
+  }), [sleepLock, isSupported, isActive];
 
   function handleClose () {
     setOpenSave(false);

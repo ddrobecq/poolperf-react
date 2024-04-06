@@ -1,13 +1,19 @@
-import { Stack } from '@mui/material';
+import { Divider, Stack } from '@mui/material';
 import Version from './version';
+import SettingsTheme from './settings-theme';
+import SleepMode from './settings-sleep';
 
 export default function Settings (props) {
     //get the version from the package.json
     const version = require('../../package.json').version;
 
     return(
-        <Stack direction={'row'} spacing={1} alignContent={'center'} >
+        <Stack direction={'column'} spacing={2} alignContent={'center'} >
             <Version />
+            <Divider orientation={'horizontal'} />
+            <SettingsTheme />
+            <Divider />
+            <SleepMode />
         </Stack>
     );
 }
