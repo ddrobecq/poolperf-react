@@ -10,7 +10,6 @@ import SaveIcon from '@mui/icons-material/Save';
 import GavelIcon from '@mui/icons-material/Gavel';
 import GameRulesDialog from "./game-rules";
 import GameNewDialog from "./game-new";
-import { _DEBUG } from "../lib/tools";
 import { GameContext } from "../lib/context";
 import useSleepLock from "../lib/sleepLock";
 
@@ -23,7 +22,6 @@ export default function Game(props) {
   const [sleepLock, setSleepLock] = useLocalStorage('is-sleep-locked', true);
 
   useEffect(() => {
-    _DEBUG ('sleepLock=', isActive);
     if (isSupported && sleepLock && !isActive) request();
   }), [sleepLock, isSupported, isActive];
 
@@ -71,6 +69,9 @@ export default function Game(props) {
         <Button onClick={handleNew} variant="contained" startIcon={<NotStartedIcon />} >Nouvelle</Button>
         <Button onClick={handleShowRules} variant="contained" startIcon={<GavelIcon />} >Règles</Button>
         <Button onClick={handleSaveGame} variant="contained" startIcon={<SaveIcon />} >Enregistrer</Button>
+        {(isSupported)
+            ? <Chip key={'active'} label={(isActive) ? 'A' : 'D'} color={(isActive) ? 'success' : 'warning'} />
+            : <Chip key={'supported'} label={'N'} color={'error'} />}
       </Stack>
       <GameSaveDialog
         open={openSave}

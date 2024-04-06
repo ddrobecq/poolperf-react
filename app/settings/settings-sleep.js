@@ -1,7 +1,7 @@
 'use client';
 
 import { Chip, Stack, Switch, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useLocalStorage from "../lib/localdb";
 import useSleepLock from "../lib/sleepLock";
 
@@ -15,6 +15,13 @@ export default function SleepMode (props) {
         setSleepLock (value);
     }
 
+    useEffect(() => {
+        if (isSupported) {
+            if (checked && !isActive) request ();
+            else if (!checked && isActive) release();
+        }
+      }), [checked, isSupported, isActive];
+    
     return (
         <Stack direction={'row'} spacing={2} alignContent={'center'} alignItems={'center'}>
             <Typography variant={'h2'} >Blocage de la veille</Typography>
