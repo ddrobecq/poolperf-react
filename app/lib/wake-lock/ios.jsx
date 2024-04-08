@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
+import { _DEBUG } from '../tools';
 
 // method taken from https://github.com/richtr/NoSleep.js/blob/master/NoSleep.js
 // needs testing.
@@ -36,6 +37,7 @@ let WakeLockIOS = createReactClass({
   syncState(preventSleep) {
 
     if (preventSleep && !this.timer) {
+      _DEBUG('WakeLockIOS', 'Prevent sleep');
 
       this.timer = setInterval(() => {
 

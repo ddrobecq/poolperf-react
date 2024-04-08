@@ -54,7 +54,6 @@ export default function Game(props) {
     setGame({...currentGame});
   }
 
-  _DEBUG("Game:render", game, sleepLock);
   return (
     <Stack direction={"column"} spacing={1} justifyContent={'space-between'}>
       <WakeLock preventSleep={sleepLock} />

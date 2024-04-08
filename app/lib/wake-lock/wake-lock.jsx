@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import WakeLockAndroid from './android';
 import WakeLockIOS from './ios';
 import { _DEBUG } from '../tools';
-import { isMobile, isIOS } from 'react-device-detect';
+import { isMobile, isIOS, isAndroid } from 'react-device-detect';
 
 export default function WakeLock(props) {
   const [clientMode, setClientMode] = useState (false);
@@ -20,9 +20,9 @@ export default function WakeLock(props) {
     }
   }, [clientMode]);
 
-  return (
-    (isIPhone) 
-        ? <WakeLockIOS {...props} /> 
-        : <WakeLockAndroid {...props} />
-  );
+  _DEBUG('WakeLock', 'isIPhone', isIPhone, 'isAndroid', isAndroid);
+  if (isIPhone) return <WakeLockIOS {...props} />;
+  if (isAndroid) return <WakeLockAndroid {...props} />;
+  _DEBUG('WakeLock', 'No WakeLock');
+  return null;
 } 
