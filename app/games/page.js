@@ -12,6 +12,8 @@ import GameRulesDialog from "./game-rules";
 import GameNewDialog from "./game-new";
 import { GameContext } from "../lib/context";
 import useSleepLock from "../lib/sleepLock";
+import { _STORAGE_KEY_IS_SLEEP_LOCKED } from "../lib/constants";
+import { _DEBUG } from "../lib/tools";
 
 export default function Game(props) {
   const [openSave, setOpenSave] = useState(false);
@@ -19,11 +21,19 @@ export default function Game(props) {
   const [openNew, setOpenNew] = useState(false);
   const { game, setGame } = useContext(GameContext);
   const [isSupported, isActive, request, release] = useSleepLock();
-  const [sleepLock, setSleepLock] = useLocalStorage('is-sleep-locked', true);
+  const [sleepLock, setSleepLock] = useLocalStorage(_STORAGE_KEY_IS_SLEEP_LOCKED, true);
+  const [clientMode, setClientMode] = useState (false);
+
+  useEffect (() => {
+    setClientMode (true);
+  }, []);
 
   useEffect(() => {
-    if (isSupported && sleepLock && !isActive) request();
-  }), [sleepLock, isSupported, isActive];
+    _DEBUG("Game useEffect clientMode", clientMode);
+    if (clientMode) {
+      if (isSupported && sleepLock && !isActive) request();
+    }
+  }, [sleepLock, isSupported, isActive, request, clientMode]);
 
   function handleClose () {
     setOpenSave(false);
@@ -70,8 +80,8 @@ export default function Game(props) {
         <Button onClick={handleShowRules} variant="contained" startIcon={<GavelIcon />} >Règles</Button>
         <Button onClick={handleSaveGame} variant="contained" startIcon={<SaveIcon />} >Enregistrer</Button>
         {(isSupported)
-            ? <Chip key={'active'} label={(isActive) ? 'A' : 'D'} color={(isActive) ? 'success' : 'warning'} />
-            : <Chip key={'supported'} label={'N'} color={'error'} />}
+        ? <Chip key={'active'} label={(isActive) ? 'A' : 'D'} color={(isActive) ? 'success' : 'warning'} />
+        : <Chip key={'supported'} label={'N'} color={'error'} />}
       </Stack>
       <GameSaveDialog
         open={openSave}

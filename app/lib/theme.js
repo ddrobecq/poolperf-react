@@ -5,6 +5,9 @@ import { createTheme } from '@mui/material/styles';
 import NextLink from 'next/link';
 import { forwardRef } from 'react';
 import Transition from './transition';
+import { getStorage } from './localdb';
+import { _STORAGE_KEY_THEME_MODE } from './constants';
+import { _DEBUG } from './tools';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -16,9 +19,13 @@ const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
     return <NextLink ref={ref} {...props} />;
 });
 
+//const mode = getStorage(_STORAGE_KEY_THEME_MODE, 'dark');
+const mode = 'dark';
+_DEBUG('Theme mode:', mode);  
+
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: mode,
     background: {
       default: '#121212',
       paper: '#393939',

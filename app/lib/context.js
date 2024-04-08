@@ -3,12 +3,13 @@
 import { createContext, useEffect, useState } from "react";
 import useLocalStorage from "./localdb";
 import { _DEBUG } from "./tools";
+import { _STORAGE_KEY_PLAYER_ID1, _STORAGE_KEY_PLAYER_ID2 } from "./constants";
 
 export const GameContext = createContext(null);
 
 export default function GameContextProvider({children}) {
-    const [ player1Id, setPlayer1Id ] = useLocalStorage('PlayerId1', 1);
-    const [ player2Id, setPlayer2Id ] = useLocalStorage('PlayerId2', 2);
+    const [ player1Id, setPlayer1Id ] = useLocalStorage(_STORAGE_KEY_PLAYER_ID1, 1);
+    const [ player2Id, setPlayer2Id ] = useLocalStorage(_STORAGE_KEY_PLAYER_ID2, 2);
     const [game, setGame] = useState(initGame());
 
     useEffect(() => {
