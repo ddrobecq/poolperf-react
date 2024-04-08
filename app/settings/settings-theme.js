@@ -34,7 +34,7 @@ export default function SettingsTheme (props) {
                 value={mode}
                 exclusive
                 onChange={handleChangeMode} 
-                size={'large'} >
+                size={'medium'} >
                 <ToggleButton value={'dark'} ><DarkModeIcon /></ToggleButton> 
                 <ToggleButton value={'light'} ><LightModeIcon/></ToggleButton> 
                 <ToggleButton value={'pool'} ><GiPoolTriangle fontSize={30}/></ToggleButton> 
