@@ -10,7 +10,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import { GiPoolTriangle } from "react-icons/gi";
 import { _DEBUG } from "../lib/tools";
 import { _DEFAULT_THEME_MODE, _STORAGE_KEY_THEME_MODE } from "../lib/constants";
-import { ThemeModeContext } from "../lib/theme-context";
+import { ThemeModeContext } from "../lib/theme/theme-context";
 
 export default function SettingsTheme (props) {
     const [defaultMode, setDefaultMode] = useLocalStorage(_STORAGE_KEY_THEME_MODE, _DEFAULT_THEME_MODE);

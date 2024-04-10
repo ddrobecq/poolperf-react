@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import GameContextProvider from './lib/context';
 import { Stack } from '@mui/material';
 import Menu from './home/menu';
-import ThemeModeContextProvider from './lib/theme-context';
+import ThemeModeContextProvider from './lib/theme/theme-context';
 
 export const metadata = {
   title: "Pool Perf",
