@@ -1,9 +1,9 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
 import GameContextProvider from './lib/context';
+import ThemeModeContextProvider from './lib/theme/theme-context';
 import { Stack } from '@mui/material';
 import Menu from './home/menu';
-import ThemeModeContextProvider from './lib/theme/theme-context';
+import Header from './home/header';
 
 export const metadata = {
   title: "Pool Perf",
@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <head>
+      <head >
         <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -24,6 +24,9 @@ export default function RootLayout({ children }) {
 
         <meta name="apple-mobile-web-app-title" content="Pool Perf" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
+
         <meta name="application-name" content="Pool Perf" />
         <meta name="msapplication-TileColor" content="#00101a" />
         <meta name="msapplication-square70x70logo" content="mstile-icon-128.png" />
@@ -72,6 +75,7 @@ export default function RootLayout({ children }) {
           <ThemeModeContextProvider>
             <GameContextProvider >
               <Stack margin={1} marginBottom={15} >
+                <Header />
                 {children}
                 <Menu />
               </Stack>

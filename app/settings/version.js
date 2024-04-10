@@ -5,7 +5,6 @@ export default function Version (props) {
 
     return(
         <Stack width={'100%'} direction={'column'} spacing={1} alignItems={'center'} >
-            <Typography variant='h1'>Pool Perf</Typography>
             <Typography variant='caption'>v{version}</Typography>
         </Stack>
     );
