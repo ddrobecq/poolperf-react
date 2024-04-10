@@ -1,8 +1,8 @@
 import { BarPlot, ChartsAxisHighlight, ChartsReferenceLine, ChartsTooltip, ChartsXAxis, ChartsYAxis, LineHighlightPlot, ResponsiveChartContainer } from '@mui/x-charts';
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import theme from "@/app/lib/theme";
 import { _DEBUG } from "@/app/lib/tools";
+import { useTheme } from '@emotion/react';
 
 function UserDetailGamesChart(props) {
     const data = (props.data.length > 0) ? props.data.map((item) => item.y) : null;
@@ -71,6 +71,7 @@ export default function UserDetailGames(props) {
     const [maxPocket, setMaxPocket] = useState(0);
     const [minFoul, setMinFoul] = useState(0);
     const [maxFoul, setMaxFoul] = useState(0);
+    const theme = useTheme();
 
     useEffect(() => {
         const data = props.dataStats;
