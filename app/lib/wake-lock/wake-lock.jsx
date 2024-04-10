@@ -20,9 +20,7 @@ export default function WakeLock(props) {
     }
   }, [clientMode]);
 
-  _DEBUG('WakeLock', 'isIPhone', isIPhone, 'isAndroid', isAndroid);
   if (isIPhone) return <WakeLockIOS {...props} />;
   if (isAndroid) return <WakeLockAndroid {...props} />;
-  _DEBUG('WakeLock', 'No WakeLock');
   return null;
 } 

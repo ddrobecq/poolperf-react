@@ -1,9 +1,9 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import GameContextProvider from './lib/context';
-import theme from "./lib/theme";
-import { CssBaseline, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import Menu from './home/menu';
+import ThemeModeContextProvider from './lib/theme-context';
 
 export const metadata = {
   title: "Pool Perf",
@@ -59,17 +59,18 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <AppRouterCacheProvider >
-          <ThemeProvider theme={theme}>
+          <ThemeModeContextProvider>
             <GameContextProvider >
-              <CssBaseline/>
-                <Stack margin={1} marginBottom={15} >
-                    {children}
-                    <Menu />
-                </Stack>
-              </GameContextProvider>
-          </ThemeProvider>
+              <Stack margin={1} marginBottom={15} >
+                {children}
+                <Menu />
+              </Stack>
+            </GameContextProvider>
+          </ThemeModeContextProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
   );
 }
+//<ThemeProvider theme={theme}>
+//</ThemeProvider>
