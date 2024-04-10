@@ -74,7 +74,7 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider >
           <ThemeModeContextProvider>
             <GameContextProvider >
-              <Stack margin={1} marginBottom={15} >
+              <Stack margin={1} marginTop={0} marginBottom={15} >
                 <Header />
                 {children}
                 <Menu />

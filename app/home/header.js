@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
+import AppBar from '@mui/material/AppBar';
 
 export default function Header (props) {
     return (
-        <Stack marginBottom={1}>
+        <AppBar position={'sticky'} sx={{ paddingY:1 }} >
             <Typography variant="h1" align="center">Pool Perf</Typography>
-        </Stack>
-    )
+        </AppBar>
+    );
 }
