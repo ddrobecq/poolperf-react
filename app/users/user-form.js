@@ -1,11 +1,10 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField } from "@mui/material";
+import { Avatar, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField } from "@mui/material";
 import UserAvatar from "./[id]/user-avatar";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import SaveIcon from '@mui/icons-material/Save';
 import UserSave from "./user-save";
 import { useState } from "react";
 import UserPictureDialog from "./user-picture";
-import { Badge } from "@mui/icons-material";
 
 export default function UserForm (props) {
     const [isUpdating, setIsUpdating] = useState(false);
@@ -40,7 +39,10 @@ export default function UserForm (props) {
             <DialogContent>
                 <Stack direction={"row"} spacing={1} >
                     <Stack direction={"row"} spacing={-3} alignItems={'baseline'} >
-                        <UserAvatar id={props.id} />
+                        {(picture) 
+                            ? <Avatar alt={props.name} src={picture} sx={{ width: 90, height: 90 }} />
+                            : <UserAvatar id={props.id} />
+                        }
                         <IconButton aria-label="change-avatar" size="large" onClick={openVideoCapture} >
                             <CameraAltIcon />
                         </IconButton>
