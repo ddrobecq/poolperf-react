@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Stack } from "@mui/material";
-import BallButton from "../lib/ball-button";
+import BallButton from "./ball-button";
 import { useContext, useState } from "react";
 import UserInfo from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
