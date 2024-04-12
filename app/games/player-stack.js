@@ -2,10 +2,12 @@
 
 import { Button, Stack } from "@mui/material";
 import BallButton from "./ball-button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserInfo from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
 import { GameContext } from "../lib/context";
+import ProgressiveBar from "./progressive-bar";
+import useFetch from "../lib/fetchAPI";
 
 function PlayerItem(props) {
     const { game, setGame } = useContext(GameContext);
@@ -50,13 +52,38 @@ function PlayerFoul(props) {
 export default function PlayerStack(props) {
     const { game, setGame } = useContext(GameContext);
     const playerId = (game) ? game.players[props.id].playerId : 0;
+    const [ playerStat, isLoading ] = useFetch(`/users/${playerId}/stats`, "GET", null);
+    const [ pocketStat, setPocketStat ] = useState(null);
+    const [ foulStat, setFoulStat ] = useState(null);
+
+    useEffect(() => {
+        if (playerStat && playerStat.length > 0) {
+            setPocketStat({
+                avg: playerStat[0].avgPocket,
+                min: playerStat[0].minPocket,
+                max: playerStat[0].maxPocket
+            });
+            setFoulStat({
+                avg: playerStat[0].avgFoul,
+                min: playerStat[0].minFoul,
+                max: playerStat[0].maxFoul
+            });
+        }
+    }
+    , [playerStat]);
 
     return (
         <Stack direction={"column"} spacing={1} alignItems={"center"} justifyContent={"space-between"}>
             <PlayerButton id={props.id} playerId={playerId} direction={'column'} handleChangePlayer={props.handleChangePlayer} />
             <PlayerShot id={props.id}  />
-            <PlayerPocket id={props.id}  />
-            <PlayerFoul id={props.id}  />
+            <Stack direction={'column'} spacing={0} alignItems={"center"} >
+                <PlayerPocket id={props.id}  />
+                <ProgressiveBar id={props.id} item={'nbPocket'} data={pocketStat} />
+            </Stack>
+            <Stack direction={'column'} spacing={0} alignItems={"center"} >
+                <PlayerFoul id={props.id}  />
+                <ProgressiveBar id={props.id} item={'nbFoul'} data={foulStat} />
+            </Stack>
         </Stack>
     );
 }

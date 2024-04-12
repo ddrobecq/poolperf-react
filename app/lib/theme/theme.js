@@ -101,8 +101,8 @@ export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#000000',
-      paper: '#121212',
+      default: '#050505',
+      paper: '#050505',
     },
   },
   typography: defaultTypography,

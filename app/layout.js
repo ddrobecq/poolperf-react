@@ -76,7 +76,9 @@ export default function RootLayout({ children }) {
             <GameContextProvider >
               <Stack marginTop={0} marginBottom={15} >
                 <Header />
-                {children}
+                <Stack marginX={1} >
+                  {children}
+                </Stack>
                 <Menu />
               </Stack>
             </GameContextProvider>
