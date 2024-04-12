@@ -5,12 +5,13 @@ import SleepMode from './settings-sleep';
 
 export default function Settings (props) {
     return(
-        <Stack direction={'column'} spacing={2} alignContent={'center'} >
+        <Stack direction={'column'} marginTop={5} spacing={1} alignContent={'center'} >
             <Version />
-            <Divider orientation={'horizontal'} />
+            <Divider />
             <SettingsTheme />
             <Divider />
             <SleepMode />
+            <Divider />
         </Stack>
     );
 }

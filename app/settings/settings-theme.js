@@ -11,6 +11,7 @@ import { GiPoolTriangle } from "react-icons/gi";
 import { _DEBUG } from "../lib/tools";
 import { _DEFAULT_THEME_MODE, _STORAGE_KEY_THEME_MODE } from "../lib/constants";
 import { ThemeModeContext } from "../lib/theme/theme-context";
+import ContrastIcon from '@mui/icons-material/Contrast';
 
 export default function SettingsTheme (props) {
     const [defaultMode, setDefaultMode] = useLocalStorage(_STORAGE_KEY_THEME_MODE, _DEFAULT_THEME_MODE);
@@ -23,12 +24,15 @@ export default function SettingsTheme (props) {
 
     return (
         <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'space-between'} >
-            <Typography variant={'h2'} >Mode</Typography>
+            <Stack direction={'row'} spacing={2} alignItems={'center'} >
+                <ContrastIcon fontSize={'large'} color={'primary'} />
+                <Typography variant={'h3'} justifyContent={'rigth'} >Mode</Typography>
+            </Stack>
             <ToggleButtonGroup
                 value={mode}
                 exclusive
                 onChange={handleChangeMode} 
-                size={'medium'} >
+                size={'small'} >
                 <ToggleButton value={'dark'} ><DarkModeIcon /></ToggleButton> 
                 <ToggleButton value={'light'} ><LightModeIcon/></ToggleButton> 
                 <ToggleButton value={'pool'} ><GiPoolTriangle fontSize={30}/></ToggleButton> 

@@ -26,6 +26,10 @@ const defaultTypography = {
     fontSize: '1.2rem',
     fontWeight: 'bold',
   },
+  h3: {
+    fontSize: '1rem',
+    fontWeight: 'bold',
+  },
   button: {
     textTransform: 'none',
   },
