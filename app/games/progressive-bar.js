@@ -3,7 +3,7 @@ import { Stack, Box, Skeleton } from '@mui/material';
 import _default from 'next/dist/client/router';
 import { useContext } from 'react';
 import { _DEBUG } from '../lib/tools';
-import { GameContext } from '../lib/context';
+import { GameContext } from './game-context';
 
 export default function ProgressiveBar(props) {
     const height = 3;
@@ -23,34 +23,36 @@ export default function ProgressiveBar(props) {
         );
     } else {
         const greyColor = theme.palette.grey[900];
-        let barColors = [];
-        _DEBUG ('ProgressiveBar', props.data, props.item, game)
-        switch (props.item) {
-            case 'nbPocket': {
-                const value = game.players[props.id][props.item]/game.players[props.id].nbShot;
-                barColors = [
-                    (value >= props.data.max) ? theme.palette.success.light : greyColor,
-                    (value >= props.data.avg*1.2) ? theme.palette.success.dark : greyColor,
-                    ((value > props.data.avg*0.8) || (value < props.data.avg*1.2)) ? theme.palette.info.main : greyColor,
-                    (value <= props.data.avg*0.8) ? theme.palette.error.light : greyColor,
-                    (value <= props.data.min) ? theme.palette.error.dark : greyColor
-                ];
-                break;
-            }
-            case 'nbFoul': {
-                const value = game.players[props.id][props.item];
-                barColors = [
-                    (value <= props.data.min) ? theme.palette.success.light : greyColor,
-                    (value <= props.data.avg*0.8) ? theme.palette.success.dark : greyColor,
-                    ((value > props.data.avg*0.8) || (value > props.data.avg*1.2)) ? theme.palette.info.main : greyColor,
-                    (value >= props.data.avg*1.2) ? theme.palette.error.light : greyColor,
-                    (value >= props.data.max) ? theme.palette.error.dark : greyColor
-                ];
-                break;
-            }  
-            default:
-                barColors = [greyColor, greyColor, greyColor, greyColor, greyColor];
-                break;
+        let barColors = [greyColor, greyColor, greyColor, greyColor, greyColor];
+        const nbShot = game.players[props.id].nbShot;
+        if (nbShot > 0) {
+            switch (props.item) {
+                case 'nbPocket': {
+                    const value = game.players[props.id][props.item]/nbShot;
+                    barColors = [
+                        (value >= props.data.nbPocket.max) ? theme.palette.success.light : greyColor,
+                        (value >= props.data.nbPocket.avg*1.2) ? theme.palette.success.dark : greyColor,
+                        ((value > props.data.nbPocket.avg*0.8) || (value < props.data.nbPocket.avg*1.2)) ? theme.palette.info.main : greyColor,
+                        (value <= props.data.nbPocket.avg*0.8) ? theme.palette.error.light : greyColor,
+                        (value <= props.data.nbPocket.min) ? theme.palette.error.dark : greyColor
+                    ];
+                    break;
+                }
+                case 'nbFoul': {
+                    const value = game.players[props.id][props.item];
+                    barColors = [
+                        (value <= props.data.nbFoul.min) ? theme.palette.success.light : greyColor,
+                        (value <= props.data.nbFoul.avg*0.8) ? theme.palette.success.dark : greyColor,
+                        ((value > props.data.nbFoul.avg*0.8) || (value > props.data.nbFoul.avg*1.2)) ? theme.palette.info.main : greyColor,
+                        (value >= props.data.nbFoul.avg*1.2) ? theme.palette.error.light : greyColor,
+                        (value >= props.data.nbFoul.max) ? theme.palette.error.dark : greyColor
+                    ];
+                    break;
+                }  
+                default:
+                    barColors = [greyColor, greyColor, greyColor, greyColor, greyColor];
+                    break;
+            };
         };
         return (
             <Stack direction={'row'} spacing={0.1}>

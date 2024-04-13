@@ -1,5 +1,5 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import GameContextProvider from './lib/context';
+import GameContextProvider from './games/game-context';
 import ThemeModeContextProvider from './lib/theme/theme-context';
 import { Stack } from '@mui/material';
 import Menu from './home/menu';

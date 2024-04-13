@@ -3,11 +3,11 @@
 import { Button, Stack } from "@mui/material";
 import BallButton from "./ball-button";
 import { useContext, useEffect, useState } from "react";
-import UserInfo from "../users/[id]/user-info";
+import { UserName } from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
-import { GameContext } from "../lib/context";
+import { GameContext } from "./game-context";
 import ProgressiveBar from "./progressive-bar";
-import useFetch from "../lib/fetchAPI";
+import UserAvatar from "../users/[id]/user-avatar";
 
 function PlayerItem(props) {
     const { game, setGame } = useContext(GameContext);
@@ -52,37 +52,25 @@ function PlayerFoul(props) {
 export default function PlayerStack(props) {
     const { game, setGame } = useContext(GameContext);
     const playerId = (game) ? game.players[props.id].playerId : 0;
-    const [ playerStat, isLoading ] = useFetch(`/users/${playerId}/stats`, "GET", null);
-    const [ pocketStat, setPocketStat ] = useState(null);
-    const [ foulStat, setFoulStat ] = useState(null);
+    const [playerName, setPlayerName] = useState((game) ? game.players[props.id].name : null);
 
     useEffect(() => {
-        if (playerStat && playerStat.length > 0) {
-            setPocketStat({
-                avg: playerStat[0].avgPocket,
-                min: playerStat[0].minPocket,
-                max: playerStat[0].maxPocket
-            });
-            setFoulStat({
-                avg: playerStat[0].avgFoul,
-                min: playerStat[0].minFoul,
-                max: playerStat[0].maxFoul
-            });
+        if (game.players[props.id].name) {
+            setPlayerName(game.players[props.id].name);
         }
-    }
-    , [playerStat]);
+    }, [game, setPlayerName, props.id]);
 
     return (
         <Stack direction={"column"} spacing={1} alignItems={"center"} justifyContent={"space-between"}>
-            <PlayerButton id={props.id} playerId={playerId} direction={'column'} handleChangePlayer={props.handleChangePlayer} />
+            <PlayerButton id={props.id} playerId={playerId} playerName={playerName} handleChangePlayer={props.handleChangePlayer} />
             <PlayerShot id={props.id}  />
             <Stack direction={'column'} spacing={0} alignItems={"center"} >
                 <PlayerPocket id={props.id}  />
-                <ProgressiveBar id={props.id} item={'nbPocket'} data={pocketStat} />
+                <ProgressiveBar id={props.id} item={'nbPocket'} data={game.players[props.id].stats} />
             </Stack>
             <Stack direction={'column'} spacing={0} alignItems={"center"} >
                 <PlayerFoul id={props.id}  />
-                <ProgressiveBar id={props.id} item={'nbFoul'} data={foulStat} />
+                <ProgressiveBar id={props.id} item={'nbFoul'} data={game.players[props.id].stats} />
             </Stack>
         </Stack>
     );
@@ -108,7 +96,10 @@ function PlayerButton (props) {
     return (
         <Stack direction={"row"} spacing={1}>
             <Button onClick={handleUserSelect} variant={'text'} color={'inherit'} >
-                <UserInfo id={props.playerId} direction={'column'} />
+                <Stack direction={'column'} alignItems={'center'} spacing={1} >
+                    <UserAvatar id={props.playerId} />
+                    <UserName name={props.playerName} />
+                </Stack>
             </Button>
             <UserSelectDialog
                 open={open}

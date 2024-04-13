@@ -2,7 +2,7 @@ import { Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, D
 import { useContext, useEffect, useState } from "react";
 import useFetch from "../lib/fetchAPI";
 import { _DEBUG } from "../lib/tools";
-import { GameContext } from "../lib/context";
+import { GameContext } from "./game-context";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import DoneIcon from '@mui/icons-material/Done';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
@@ -10,16 +10,7 @@ import CloudSyncIcon from '@mui/icons-material/CloudSync';
 function GameSaveDialogPlayerLine(props) {
     const [checked, setChecked] = useState(true);
     const id = (props.player) ? props.player.playerId : 0;
-    //TO DO : TO BE REMOVED WHEN INCLUDE USR_NAME IN PLAYER OBJECT IN API
-    const [userData, isLoading] = useFetch (`/users/${id}`, "GET", null);
-    const [name, setName] = useState (props.player.name);
-
-    useEffect (() => {
-        if (userData && userData.length>0) {
-            setName(userData[0].usr_name);
-        }
-    }, [userData]);
-    //END TO DO
+    const name = (props.player) ? props.player.name : null;
 
     function handleChecked() {
         setChecked(!checked);
@@ -31,7 +22,7 @@ function GameSaveDialogPlayerLine(props) {
                 <Typography>Pour {name} ?</Typography>
                 <Box  >
                     {(props.isConfirmed && checked) 
-                        ? <GamePlayerSave player={props.player} onClose={props.onClose} />
+                        ? <GamePlayerSave player={props.player} />
                         : <Switch checked={checked} onChange={handleChecked} />
                     }
                 </Box>
@@ -53,21 +44,16 @@ export default function GameSaveDialog (props) {
         onClose();
     }
 
-    function handleClose () {
-        //onClose();
-        _DEBUG("GameSaveDialog handleClose");
-    }
-
     return (
         <Dialog 
           open={open} 
-          onClose={handleClose} 
+          onClose={handleCancel} 
           keepMounted >
             <DialogTitle>Enregistrer la partie ?</DialogTitle>
             <DialogContent>
                 <Stack direction={"column"} spacing={2} >
-                    <GameSaveDialogPlayerLine player={props.player1} isConfirmed={isConfirmed} onClose={handleClose} />
-                    <GameSaveDialogPlayerLine player={props.player2} isConfirmed={isConfirmed} onClose={handleClose} />
+                    <GameSaveDialogPlayerLine player={props.player1} isConfirmed={isConfirmed} />
+                    <GameSaveDialogPlayerLine player={props.player2} isConfirmed={isConfirmed} />
                 </Stack>
             </DialogContent>
             <DialogActions>
@@ -104,12 +90,6 @@ function GamePlayerSave (props) {
         } 
     }, [result]);
       
-    useEffect(() => {
-        if (isSaved) {
-            props.onClose();
-        } 
-    }, [props, isSaved]);
-
     return (
         <>
             {(error) 

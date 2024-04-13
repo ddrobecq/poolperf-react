@@ -14,16 +14,22 @@ export default function UserInfo (props) {
                 {(id === 0) // New player
                 ?   <>
                         <UserAvatar id={0} />
-                        <Typography align='center' variant={"h1"}>Nouveau joueur</Typography>
+                        <UserName name={'Nouveau joueur'} />
                     </>
                 :   <>
                         <UserAvatar id={props.id} />
-                        <Typography align='center' variant={"h1"}>
-                            {(data && data.length>0) ? data[0].usr_name : <Skeleton variant="h1" width={100} />}
-                        </Typography>
+                        <UserName name={data && data.length>0 ? data[0].usr_name : null} />
                     </>
                 }
             </Stack>
         </Stack>
 );
+}
+
+export function UserName (props) {
+    return (
+        <Typography align='center' variant={"h1"}>
+            {(props.name) ? props.name : <Skeleton variant="h1" width={100} />}
+        </Typography>
+    );
 }

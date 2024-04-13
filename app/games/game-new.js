@@ -1,10 +1,8 @@
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { _DEBUG } from "../lib/tools";
 
 export default function GameNewDialog(props) {
     const {onClose, open} = props;
-    const router = useRouter();
 
     function handleConfirm() {
         onClose(true);

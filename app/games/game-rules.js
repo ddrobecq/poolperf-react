@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import { useContext } from "react";
-import { GameContext } from "../lib/context";
+import { GameContext } from "./game-context";
 
 export default function GameRulesDialog(props) {
     const {game, setGame} = useContext(GameContext);
