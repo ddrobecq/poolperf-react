@@ -8,15 +8,28 @@ import UserSelectDialog from "../users/[id]/user-select";
 import { GameContext } from "./game-context";
 import ProgressiveBar from "./progressive-bar";
 import UserAvatar from "../users/[id]/user-avatar";
+import NoSleep from '@uriopass/nosleep.js';
+import { _DEBUG } from "../lib/tools";
 
 function PlayerItem(props) {
     const { game, setGame } = useContext(GameContext);
+    const [ isNoSleepEnabled, setIsNoSleepEnabled ] = useState(false);
+    let noSleep = new NoSleep();
 
     function handleClick() {
         let currentGame = game;
         currentGame.players[props.id][props.item] = currentGame.players[props.id][props.item] + 1;
         currentGame.playerActive = props.id;
         setGame({...currentGame});
+        if (!isNoSleepEnabled) {
+            _DEBUG('Enable NoSleep');
+            document.addEventListener('click', function enableNoSleep() {
+                document.removeEventListener('click', enableNoSleep, false);
+                noSleep.enable();
+                setIsNoSleepEnabled(true);
+                alert (noSleep.isEnabled);
+            }, false);
+        }   
     }
 
     function isActive() {
