@@ -105,7 +105,7 @@ export const darkTheme = createTheme({
     mode: 'dark',
     background: {
       default: '#050505',
-      paper: '#050505',
+      paper: '#202020',
     },
   },
   typography: defaultTypography,
