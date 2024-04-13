@@ -28,7 +28,7 @@ const nativeWakeLock = () => {
 class NoSleep {
   constructor() {
     this.enabled = false;
-    if (nativeWakeLock()) {
+/*    if (nativeWakeLock()) {
       this._wakeLock = null;
       const handleVisibilityChange = () => {
         if (this._wakeLock !== null && document.visibilityState === "visible") {
@@ -37,7 +37,8 @@ class NoSleep {
       };
       document.addEventListener("visibilitychange", handleVisibilityChange);
       document.addEventListener("fullscreenchange", handleVisibilityChange);
-    } else if (oldIOS()) {
+    } else */
+    if (oldIOS()) {
       this.noSleepTimer = null;
     } else {
       // Set up no sleep video element
@@ -85,7 +86,7 @@ class NoSleep {
   }
 
   enable() {
-    if (nativeWakeLock()) {
+/*    if (nativeWakeLock()) {
         alert ("nativeWakeLock");
       return navigator.wakeLock
         .request("screen")
@@ -107,7 +108,8 @@ class NoSleep {
           alert (`${err.name}, ${err.message}`);
           throw err;
         });
-    } else if (oldIOS()) {
+    } else*/
+    if (oldIOS()) {
         alert ("oldIOS");
       this.disable();
       console.warn(`
