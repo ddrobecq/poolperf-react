@@ -2,26 +2,32 @@
 
 import { Button, Stack } from "@mui/material";
 import BallButton from "./ball-button";
-import { useContext, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { UserName } from "../users/[id]/user-info";
 import UserSelectDialog from "../users/[id]/user-select";
 import { GameContext } from "./game-context";
 import ProgressiveBar from "./progressive-bar";
 import UserAvatar from "../users/[id]/user-avatar";
-import NoSleep from '@uriopass/nosleep.js';
+import NoSleep from "../lib/wake-lock/nosleep";
 import { _DEBUG } from "../lib/tools";
 
 function PlayerItem(props) {
     const { game, setGame } = useContext(GameContext);
     const [ isNoSleepEnabled, setIsNoSleepEnabled ] = useState(false);
-    let noSleep = new NoSleep();
+    const [ noSleep, setNoSleep ] = useState(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setNoSleep(new NoSleep());
+        }
+    }, []);
 
     function handleClick() {
         let currentGame = game;
         currentGame.players[props.id][props.item] = currentGame.players[props.id][props.item] + 1;
         currentGame.playerActive = props.id;
         setGame({...currentGame});
-        if (!isNoSleepEnabled) {
+        if (!isNoSleepEnabled && noSleep) {
             _DEBUG('Enable NoSleep');
             document.addEventListener('click', function enableNoSleep() {
                 document.removeEventListener('click', enableNoSleep, false);
