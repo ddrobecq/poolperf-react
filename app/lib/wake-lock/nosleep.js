@@ -87,13 +87,11 @@ class NoSleep {
 
   enable() {
 /*    if (nativeWakeLock()) {
-        alert ("nativeWakeLock");
       return navigator.wakeLock
         .request("screen")
         .then((wakeLock) => {
           this._wakeLock = wakeLock;
           this.enabled = true;
-          alert ("wakeLock activated");
           console.log("Wake Lock active.");
           this._wakeLock.addEventListener("release", () => {
             // ToDo: Potentially emit an event for the page to observe since
@@ -105,12 +103,10 @@ class NoSleep {
         .catch((err) => {
           this.enabled = false;
           console.error(`${err.name}, ${err.message}`);
-          alert (`${err.name}, ${err.message}`);
           throw err;
         });
     } else*/
     if (oldIOS()) {
-        alert ("oldIOS");
       this.disable();
       console.warn(`
         NoSleep enabled for older iOS devices. This can interrupt
@@ -127,16 +123,13 @@ class NoSleep {
       this.enabled = true;
       return Promise.resolve();
     } else {
-        alert ('launch promise for noSleepVideo');
       let playPromise = this.noSleepVideo.play();
       return playPromise
         .then((res) => {
-            alert ("noSleepVideo activated");
           this.enabled = true;
           return res;
         })
         .catch((err) => {
-            alert (`${err.name}, ${err.message}`);
           this.enabled = false;
           throw err;
         });

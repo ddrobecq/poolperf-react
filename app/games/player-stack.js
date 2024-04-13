@@ -13,27 +13,12 @@ import { _DEBUG } from "../lib/tools";
 
 function PlayerItem(props) {
     const { game, setGame } = useContext(GameContext);
-    const [ isNoSleepEnabled, setIsNoSleepEnabled ] = useState(false);
-    const [ noSleep, setNoSleep ] = useState(null);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setNoSleep(new NoSleep());
-        }
-    }, []);
 
     function handleClick() {
         let currentGame = game;
         currentGame.players[props.id][props.item] = currentGame.players[props.id][props.item] + 1;
         currentGame.playerActive = props.id;
         setGame({...currentGame});
-        if (!isNoSleepEnabled && noSleep) {
-            document.addEventListener('click', function enableNoSleep() {
-                document.removeEventListener('click', enableNoSleep, false);
-                noSleep.enable();
-                setIsNoSleepEnabled(true);
-            }, false);
-        }   
     }
 
     function isActive() {

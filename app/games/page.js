@@ -14,7 +14,6 @@ import { GameContext } from "./game-context";
 import { _STORAGE_KEY_IS_SLEEP_LOCKED } from "../lib/constants";
 import { _DEBUG } from "../lib/tools";
 import WakeLock from "../lib/wake-lock/wake-lock";
-import useFetch from "../lib/fetchAPI";
 
 export default function Game(props) {
   const [openSave, setOpenSave] = useState(false);
