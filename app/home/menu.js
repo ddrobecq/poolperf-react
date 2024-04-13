@@ -25,7 +25,7 @@ export default function Menu () {
         <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} >
             <Divider />
             <BottomNavigation 
-            sx={{ height: 100, paddingBottom: 5}}
+            sx={{ backgroundColor:'#252525', height: 100, paddingBottom: 5}}
             showLabels
             value={value}
             onChange={handleChangeMenu} >
