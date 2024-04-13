@@ -83,7 +83,10 @@ const defaultComponents = {
 export const lightTheme = createTheme({
   palette: {
       mode: 'light',
-  },
+      background: {
+        paper: '#eeeeee',
+      },
+    },
   typography: defaultTypography,
   components: defaultComponents,
 });
