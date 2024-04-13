@@ -28,12 +28,10 @@ function PlayerItem(props) {
         currentGame.playerActive = props.id;
         setGame({...currentGame});
         if (!isNoSleepEnabled && noSleep) {
-            _DEBUG('Enable NoSleep');
             document.addEventListener('click', function enableNoSleep() {
                 document.removeEventListener('click', enableNoSleep, false);
                 noSleep.enable();
                 setIsNoSleepEnabled(true);
-                alert (noSleep.isEnabled);
             }, false);
         }   
     }
