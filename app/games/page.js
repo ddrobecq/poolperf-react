@@ -55,7 +55,7 @@ export default function Game(props) {
   }
 
   return (
-    <Stack direction={"column"} spacing={1} justifyContent={'space-between'}>
+    <Stack direction={"column"} spacing={2} justifyContent={'space-between'}>
       <WakeLock preventSleep={sleepLock} />
       <Stack direction={"row"} spacing={2} justifyContent={"space-around"}>
         <PlayerStack id={0} handleChangePlayer={handleChangePlayer} />

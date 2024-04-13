@@ -63,7 +63,7 @@ export default function PlayerStack(props) {
     }, [game, setPlayerName, props.id]);
 
     return (
-        <Stack direction={"column"} spacing={1} alignItems={"center"} justifyContent={"space-between"}>
+        <Stack direction={"column"} spacing={2} alignItems={"center"} justifyContent={"space-between"}>
             <PlayerButton id={props.id} playerId={playerId} playerName={playerName} handleChangePlayer={props.handleChangePlayer} />
             <PlayerShot id={props.id}  />
             <Stack direction={'column'} spacing={0} alignItems={"center"} >

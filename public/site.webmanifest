@@ -1,6 +1,7 @@
 {
   "name": "Pool Perf",
   "short_name": "Pool Perf",
+  "start_url": "/",
   "icons": [
     {
       "src": "manifest-icon-192.maskable.png",

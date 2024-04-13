@@ -76,7 +76,6 @@ const defaultComponents = {
       root: {
         borderRadius: 5,
       },
-      
     },
   },
 };
