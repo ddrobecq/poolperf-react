@@ -22,7 +22,7 @@ export default function ProgressiveBar(props) {
             </Stack>
         );
     } else {
-        const greyColor = theme.palette.grey[900];
+        const greyColor = theme.palette.background.paper;
         let barColors = [greyColor, greyColor, greyColor, greyColor, greyColor];
         const nbShot = game.players[props.id].nbShot;
         if (nbShot > 0) {

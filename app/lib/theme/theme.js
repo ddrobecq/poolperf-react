@@ -62,7 +62,6 @@ const defaultComponents = {
     },
     styleOverrides: {
       paper: {
-        backgroundColor: '#121212',
         borderRadius: 5,
         border: '1px solid',
       },
