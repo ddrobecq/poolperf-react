@@ -1,10 +1,10 @@
 'use client';
 
 import { createContext, useCallback, useEffect, useState } from "react";
-import useLocalStorage from "../lib/localdb";
-import { _DEBUG } from "../lib/tools";
-import { _STORAGE_KEY_PLAYER_ID1, _STORAGE_KEY_PLAYER_ID2 } from "../lib/constants";
-import useFetch from "../lib/fetchAPI";
+import useLocalStorage from "@/components/localdb";
+import { _DEBUG } from "@/components/tools";
+import { _STORAGE_KEY_PLAYER_ID1, _STORAGE_KEY_PLAYER_ID2 } from "@/components/constants";
+import useFetch from "@/components/fetchAPI";
 
 export const GameContext = createContext(null);
 

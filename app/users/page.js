@@ -1,8 +1,8 @@
 'use client';
 
 import { Skeleton, Stack } from "@mui/material";
-import useFetch from "../lib/fetchAPI";
-import UserCard from "./user-card";
+import useFetch from "@/components/fetchAPI";
+import UserCard from "./components/user-card";
 
 export default function Users(props) {
     const [data, isLoading] = useFetch ("/users", "GET", null);

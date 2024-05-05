@@ -1,7 +1,7 @@
 import { Avatar, Stack, SvgIcon } from "@mui/material";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import useFetch from "@/app/lib/fetchAPI";
-import { _DEBUG } from "@/app/lib/tools";
+import useFetch from "@/components/fetchAPI";
+import { _DEBUG } from "@/components/tools";
 
 export default function UserAvatar(props) {
     const id = (props.id) ? props.id : 0;

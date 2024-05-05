@@ -1,7 +1,7 @@
 import { BarPlot, ChartsAxisHighlight, ChartsReferenceLine, ChartsTooltip, ChartsXAxis, ChartsYAxis, LineHighlightPlot, LinePlot, ResponsiveChartContainer } from '@mui/x-charts';
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { _DEBUG } from "@/app/lib/tools";
+import { _DEBUG } from "@/components/tools";
 import { useTheme } from '@emotion/react';
 import { darken } from '@mui/material/styles';
 

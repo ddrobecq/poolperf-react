@@ -1,7 +1,7 @@
 import { Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Stack, Switch, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import useFetch from "../lib/fetchAPI";
-import { _DEBUG } from "../lib/tools";
+import useFetch from "@/components/fetchAPI";
+import { _DEBUG } from "@/components/tools";
 import { GameContext } from "./game-context";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import DoneIcon from '@mui/icons-material/Done';

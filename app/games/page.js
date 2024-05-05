@@ -1,19 +1,19 @@
 'use client';
 
-import PlayerStack from "./player-stack";
-import GameSaveDialog from "./game-save";
+import PlayerStack from "./components/player-stack";
+import GameSaveDialog from "./components/game-save";
 import { useContext, useEffect, useState } from "react";
 import { Button, Divider, Stack } from "@mui/material";
-import useLocalStorage from "../lib/localdb";
+import useLocalStorage from "@/components/localdb";
 import NotStartedIcon from '@mui/icons-material/NotStarted';
 import SaveIcon from '@mui/icons-material/Save';
 import GavelIcon from '@mui/icons-material/Gavel';
-import GameRulesDialog from "./game-rules";
-import GameNewDialog from "./game-new";
-import { GameContext } from "./game-context";
-import { _STORAGE_KEY_IS_SLEEP_LOCKED } from "../lib/constants";
-import { _DEBUG } from "../lib/tools";
-import WakeLock from "../lib/wake-lock/wake-lock";
+import GameRulesDialog from "./components/game-rules";
+import GameNewDialog from "./components/game-new";
+import { GameContext } from "./components/game-context";
+import { _STORAGE_KEY_IS_SLEEP_LOCKED } from "@/components/constants";
+import { _DEBUG } from "@/components/tools";
+import WakeLock from "@/components/wake-lock/wake-lock";
 
 export default function Game(props) {
   const [openSave, setOpenSave] = useState(false);

@@ -4,13 +4,13 @@ import { Stack, Typography } from "@mui/material";
 import { useContext, useEffect } from "react";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import useLocalStorage from "../lib/localdb";
+import useLocalStorage from "@/components/localdb";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { GiPoolTriangle } from "react-icons/gi";
-import { _DEBUG } from "../lib/tools";
-import { _DEFAULT_THEME_MODE, _STORAGE_KEY_THEME_MODE } from "../lib/constants";
-import { ThemeModeContext } from "../lib/theme/theme-context";
+import { _DEBUG } from "@/components//tools";
+import { _DEFAULT_THEME_MODE, _STORAGE_KEY_THEME_MODE } from "@/components/constants";
+import { ThemeModeContext } from "@/components/theme/theme-context";
 import ContrastIcon from '@mui/icons-material/Contrast';
 
 export default function SettingsTheme (props) {

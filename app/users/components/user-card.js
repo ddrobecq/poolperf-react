@@ -1,9 +1,9 @@
 'use client';
 
 import { Card, CardActionArea, CardActions, CardContent, IconButton, Link, Stack } from "@mui/material";
-import UserInfo from "./[id]/user-info";
+import UserInfo from "./user-info";
 import UserForm from "./user-form";
-import { _DEBUG } from "../lib/tools";
+import { _DEBUG } from "@/components/tools";
 import { useState } from "react";
 
 export default function UserCard (props) {

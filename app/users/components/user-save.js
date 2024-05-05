@@ -1,8 +1,8 @@
 import LoadingButton from '@mui/lab/LoadingButton';
-import useFetch from "../lib/fetchAPI";
+import useFetch from "@/components/fetchAPI";
 import { useEffect, useState } from "react";
 import { Button } from '@mui/material';
-import { _DEBUG } from '../lib/tools';
+import { _DEBUG } from '@/components/tools';
 
 export default function UserSave (props) {
     const method = (props.id == 0) ? 'POST' : 'PUT';

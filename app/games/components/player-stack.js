@@ -3,13 +3,12 @@
 import { Button, Stack } from "@mui/material";
 import BallButton from "./ball-button";
 import { use, useContext, useEffect, useState } from "react";
-import { UserName } from "../users/[id]/user-info";
-import UserSelectDialog from "../users/[id]/user-select";
+import { UserName } from "../../users/components/user-info";
+import UserSelectDialog from "../../users/components/user-select";
 import { GameContext } from "./game-context";
 import ProgressiveBar from "./progressive-bar";
-import UserAvatar from "../users/[id]/user-avatar";
-import NoSleep from "../lib/wake-lock/nosleep";
-import { _DEBUG } from "../lib/tools";
+import UserAvatar from "../../users/components/user-avatar";
+import { _DEBUG } from "@/components/tools";
 
 function PlayerItem(props) {
     const { game, setGame } = useContext(GameContext);

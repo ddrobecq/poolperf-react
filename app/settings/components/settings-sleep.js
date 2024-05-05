@@ -2,8 +2,8 @@
 
 import { Chip, Stack, Switch, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import useLocalStorage from "../lib/localdb";
-import { _STORAGE_KEY_IS_SLEEP_LOCKED } from "../lib/constants";
+import useLocalStorage from "@/components/localdb";
+import { _STORAGE_KEY_IS_SLEEP_LOCKED } from "@/components/constants";
 import { isMobile, isIOS, isAndroid } from 'react-device-detect';
 import TimerOffIcon from '@mui/icons-material/TimerOff';
 

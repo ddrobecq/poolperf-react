@@ -1,5 +1,5 @@
 import { Avatar, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField } from "@mui/material";
-import UserAvatar from "./[id]/user-avatar";
+import UserAvatar from "./user-avatar";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import SaveIcon from '@mui/icons-material/Save';
 import UserSave from "./user-save";

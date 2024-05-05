@@ -1,7 +1,7 @@
 import { Skeleton, Stack, Typography } from "@mui/material";
-import useFetch from "@/app/lib/fetchAPI";
+import useFetch from "@/components/fetchAPI";
 import UserAvatar from "./user-avatar";
-import { _DEBUG } from "@/app/lib/tools";
+import { _DEBUG } from "@/components/tools";
 
 export default function UserInfo (props) {
     const id = (props.id) ? props.id : 0;

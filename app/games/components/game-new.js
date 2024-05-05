@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import { _DEBUG } from "../lib/tools";
+import { _DEBUG } from "@/components/tools";
 
 export default function GameNewDialog(props) {
     const {onClose, open} = props;

@@ -1,7 +1,7 @@
 import { Divider, Stack } from '@mui/material';
-import Version from './version';
-import SettingsTheme from './settings-theme';
-import SleepMode from './settings-sleep';
+import Version from './components/version';
+import SettingsTheme from './components/settings-theme';
+import SleepMode from './components/settings-sleep';
 
 export default function Settings (props) {
     return(

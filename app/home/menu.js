@@ -8,7 +8,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { GiPoolTriangle } from "react-icons/gi";
-import { _DEBUG } from '../lib/tools';
+import { _DEBUG } from '../../components/tools';
 import { useTheme } from '@emotion/react';
 
 

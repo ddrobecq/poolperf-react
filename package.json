@@ -1,6 +1,6 @@
 {
   "name": "poolperf-react",
-  "version": "2.14.1",
+  "version": "2.14.2",
   "private": false,
   "scripts": {
     "dev": "next dev",

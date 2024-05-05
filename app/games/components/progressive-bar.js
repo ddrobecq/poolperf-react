@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react';
 import { Stack, Box, Skeleton } from '@mui/material';
 import _default from 'next/dist/client/router';
 import { useContext } from 'react';
-import { _DEBUG } from '../lib/tools';
+import { _DEBUG } from '../../../components/tools';
 import { GameContext } from './game-context';
 
 export default function ProgressiveBar(props) {

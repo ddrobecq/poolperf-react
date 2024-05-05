@@ -1,13 +1,13 @@
 'use client';
 
 import { Divider, IconButton, Link, Stack } from "@mui/material";
-import UserInfo from "./user-info";
-import UserDetailStats from "./user-stat";
-import UserDetailGames from "./user-chart";
+import UserInfo from "../components/user-info";
+import UserDetailStats from "../components/user-stat";
+import UserDetailGames from "../components/user-chart";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useEffect, useState } from "react";
-import useFetch from "@/app/lib/fetchAPI";
+import useFetch from "@/components/fetchAPI";
 
 export default function UserDetail({params}) {
     const id = params.id;

@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Box } from "@mui/material";
 import Webcam from "react-webcam";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { _DEBUG } from "../lib/tools";
+import { _DEBUG } from "@/components/tools";
 import CameraswitchIcon from '@mui/icons-material/Cameraswitch';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
