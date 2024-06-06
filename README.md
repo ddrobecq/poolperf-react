@@ -1,7 +1,7 @@
 ## Project Description
 Pool Perf React is a front end web app to manage players' performances on pool
 It implements Pool Perf API on https://api.billard.ddrobecq.fr
-Try https://billard.drobecq.fr to havea look
+Try https://billard.drobecq.fr to have a look
 
 ## Getting Started
 
