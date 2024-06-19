@@ -1,6 +1,6 @@
 {
   "name": "poolperf-react",
-  "version": "2.14.2",
+  "version": "2.14.3",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -9,23 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.14",
+    "@emotion/cache": "^11.11",
+    "@emotion/react": "^11.11",
+    "@emotion/styled": "^11.11",
+    "@mui/icons-material": "^5.15",
     "@mui/lab": "^5.0.0-alpha.169",
-    "@mui/material": "^5.15.14",
-    "@mui/material-nextjs": "^5.15.11",
-    "@mui/x-charts": "^7.0.0",
-    "create-react-class": "^15.6.0",
-    "next": "^14.1.4",
-    "prop-types": "^15.8.1",
-    "pwa-asset-generator": "^6.3.1",
-    "react": "^18.2.0",
-    "react-device-detect": "^2.2.3",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1",
-    "react-webcam": "^7.2.0"
+    "@mui/material": "^5.15",
+    "@mui/material-nextjs": "^5.15",
+    "@mui/x-charts": "^7.0",
+    "create-react-class": "^15.6",
+    "next": "^14.1",
+    "prop-types": "^15.8",
+    "react": "^18",
+    "react-device-detect": "^2.2",
+    "react-dom": "^18",
+    "react-icons": "^5",
+    "react-webcam": "^7.2"
   },
   "devDependencies": {
     "eslint": "^8",
