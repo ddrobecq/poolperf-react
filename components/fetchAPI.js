@@ -3,7 +3,8 @@
 import {useState, useEffect} from 'react';
 import { _DEBUG } from './tools';
 import {_STORAGE_KEY_IS_CACHE} from './constants';
-const _APIURL = "https://api.billard.drobecq.fr";
+const _APIURL = process.env.NEXT_PUBLIC_API_URL;
+const _APIKEY = process.env.NEXT_PUBLIC_API_KEY;
 
 // **********************************************
 // function : useFetch
@@ -75,6 +76,7 @@ function callAPI(strPath, strMethod, strPayLoad, bRetry) {
                 error: error
             });
         };
+        xhr.setRequestHeader("x-api-key", _APIKEY);
         xhr.send(strPayLoad);       
         _DEBUG ("sent : ", `${strMethod} ${strPath} ${strPayLoad}`); 
     });
