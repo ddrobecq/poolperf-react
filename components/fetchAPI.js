@@ -6,7 +6,6 @@ import {_STORAGE_KEY_IS_CACHE} from './constants';
 const _APIURL = process.env.NEXT_PUBLIC_API_URL;
 const _APIKEY = process.env.NEXT_PUBLIC_API_KEY;
 
-
 // **********************************************
 // function : useFetch
 //  url : URL to call API
