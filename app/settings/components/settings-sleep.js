@@ -18,7 +18,8 @@ export default function SleepMode (props) {
     }
 
     useEffect (() => {
-        setChecked(defaultSleepLock);
+        if (defaultSleepLock !== undefined) setChecked(defaultSleepLock)
+        else setChecked(false);
     }, [defaultSleepLock]);
 
     return (
